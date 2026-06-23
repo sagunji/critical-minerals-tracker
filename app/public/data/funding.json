@@ -1,0 +1,20 @@
+[
+  { "operator": "Frontier Lithium", "projectName": "Critical Mineral Concentrate Optimization Process and Recovery", "amount": 500000, "program": "Ontario CMIF", "intake": 1 },
+  { "operator": "Vale Canada", "projectName": "Production of battery minerals (Ni and Co) from pyrrhotite tailings", "amount": 500000, "program": "Ontario CMIF", "intake": 1 },
+  { "operator": "Wyloo", "projectName": "Eagle's Nest Underground Tailings Storage", "amount": 500000, "program": "Ontario CMIF", "intake": 1 },
+  { "operator": "Canada Nickel", "projectName": "Direct from Mine to EV - Low Carbon Nickel Matte Production", "amount": 327346, "program": "Ontario CMIF", "intake": 1 },
+  { "operator": "EV Nickel", "projectName": "Clean-Nickel Bioleaching and Carbon Capture", "amount": 500000, "program": "Ontario CMIF", "intake": 1 },
+  { "operator": "Vale Canada", "projectName": "Next Generation Carbonyl Refinery Technology", "amount": 500000, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Glencore Canada", "projectName": "Lithium Recovery - R&D for Demonstration Plant", "amount": 500000, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "EV Nickel", "projectName": "EV Nickel Clean-Critical Minerals Bioleaching - Mineralization Project", "amount": 223552, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Avalon Advanced Materials", "projectName": "Analcime Recovery and Utilization Project", "amount": 500000, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Rock Tech Lithium", "projectName": "Rock Tech Spodumene Sorting Testing", "amount": 388074, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Generation Mining", "projectName": "Advanced Flotation Cells for Copper and PGM Recovery", "amount": 490084, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Wyloo", "projectName": "Nickel Sulfate Processing Facility Assessment", "amount": 500000, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Ucore Rare Metals", "projectName": "RapidSX Demo Plant - Commercial Prototype Demonstration", "amount": 500000, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Canada Nickel", "projectName": "Low Carbon, Low Cost Nickel Processing using Ontario Biochar", "amount": 495740, "program": "Ontario CMIF", "intake": 2 },
+  { "operator": "Electra Battery Materials", "projectName": "Cobalt Sulfate Refinery Construction", "amount": 20000000, "program": "NRCan Critical Minerals R&D", "intake": 0 },
+  { "operator": "Electra Battery Materials", "projectName": "Battery Recycling Facility", "amount": 5000000, "program": "NRCan Critical Minerals R&D", "intake": 0 },
+  { "operator": "Electra Battery Materials", "projectName": "Cobalt Refinery Expansion", "amount": 17500000, "program": "Invest Ontario", "intake": 0 },
+  { "operator": "Canada Nickel", "projectName": "Crawford - Critical Minerals Priority Project", "amount": 0, "program": "Ontario Priority Nation-Building", "intake": 0 }
+]

@@ -1,0 +1,97 @@
+{
+  "crawford": {
+    "currentPhase": 3,
+    "phases": [
+      { "label": "Discovery & Exploration", "date": "2019–2022", "status": "completed" },
+      { "label": "Feasibility Study", "date": "2023", "status": "completed" },
+      { "label": "Impact Assessment", "date": "2024–2026", "status": "active" },
+      { "label": "Permitting Decision", "date": "Summer 2026", "status": "upcoming" },
+      { "label": "Construction", "date": "Late 2026–2029", "status": "upcoming" },
+      { "label": "Production", "date": "2030+", "status": "upcoming" }
+    ]
+  },
+  "eagles-nest": {
+    "currentPhase": 2,
+    "phases": [
+      { "label": "Discovery", "date": "2002–2007", "status": "completed" },
+      { "label": "Feasibility & EA", "date": "2008–2025", "status": "completed" },
+      { "label": "Permitting (EA Exempted)", "date": "June 2025", "status": "active" },
+      { "label": "Road Infrastructure", "date": "2026–2030", "status": "upcoming" },
+      { "label": "Construction", "date": "2028–2030", "status": "upcoming" },
+      { "label": "Production", "date": "2030+", "status": "upcoming" }
+    ]
+  },
+  "electra-battery-materials": {
+    "currentPhase": 3,
+    "phases": [
+      { "label": "Acquisition & Planning", "date": "2017–2022", "status": "completed" },
+      { "label": "Financing Secured", "date": "Oct 2024", "status": "completed" },
+      { "label": "Refurbishment", "date": "2020–2024", "status": "completed" },
+      { "label": "Construction Restart", "date": "2025–2027", "status": "active" },
+      { "label": "Commissioning", "date": "Q2 2027", "status": "upcoming" },
+      { "label": "Production", "date": "2027+", "status": "upcoming" }
+    ]
+  },
+  "generation-mining-marathon": {
+    "currentPhase": 3,
+    "phases": [
+      { "label": "Exploration & Resource", "date": "2019–2022", "status": "completed" },
+      { "label": "Feasibility Study", "date": "2022–2023", "status": "completed" },
+      { "label": "Environmental Assessment", "date": "2023–2024", "status": "completed" },
+      { "label": "Final Permits Received", "date": "May 2025", "status": "active" },
+      { "label": "Construction Financing", "date": "2025–2026", "status": "upcoming" },
+      { "label": "Production", "date": "2027+", "status": "upcoming" }
+    ]
+  },
+  "pakeagama-lake": {
+    "currentPhase": 3,
+    "phases": [
+      { "label": "Exploration", "date": "2013–2021", "status": "completed" },
+      { "label": "Pre-Feasibility Study", "date": "2023", "status": "completed" },
+      { "label": "Mitsubishi JV Formed", "date": "March 2024", "status": "completed" },
+      { "label": "Definitive Feasibility", "date": "May 2025", "status": "active" },
+      { "label": "Construction", "date": "2027–2029", "status": "upcoming" },
+      { "label": "Production", "date": "2029+", "status": "upcoming" }
+    ]
+  },
+  "onaping-depth": {
+    "currentPhase": 3,
+    "phases": [
+      { "label": "Feasibility Study", "date": "2016", "status": "completed" },
+      { "label": "Project Approval", "date": "2018", "status": "completed" },
+      { "label": "Shaft Development", "date": "2019–2024", "status": "completed" },
+      { "label": "Mine Development", "date": "2024–2026", "status": "active" },
+      { "label": "Production Ramp-Up", "date": "2026–2027", "status": "upcoming" },
+      { "label": "Full Production", "date": "2027–2040+", "status": "upcoming" }
+    ]
+  },
+  "victoria": {
+    "currentPhase": 3,
+    "phases": [
+      { "label": "Exploration", "date": "2014–2019", "status": "completed" },
+      { "label": "Feasibility", "date": "2019–2021", "status": "completed" },
+      { "label": "Permitting", "date": "2021–2023", "status": "completed" },
+      { "label": "Construction", "date": "2023–2027", "status": "active" },
+      { "label": "Production", "date": "2027+", "status": "upcoming" }
+    ]
+  },
+  "vale-sudbury-stobie": {
+    "currentPhase": 4,
+    "phases": [
+      { "label": "Historical Operations", "date": "1890–2017", "status": "completed" },
+      { "label": "Closure & Planning", "date": "2017–2023", "status": "completed" },
+      { "label": "Partnership Formed", "date": "2023", "status": "completed" },
+      { "label": "Open-Pit Resumed", "date": "2024", "status": "completed" },
+      { "label": "Production", "date": "2024+", "status": "active" }
+    ]
+  },
+  "crean-hill": {
+    "currentPhase": 2,
+    "phases": [
+      { "label": "Acquisition", "date": "2021", "status": "completed" },
+      { "label": "Exploration & Development", "date": "2022–2024", "status": "completed" },
+      { "label": "Construction", "date": "2024–2025", "status": "active" },
+      { "label": "Production", "date": "2025+", "status": "upcoming" }
+    ]
+  }
+}
