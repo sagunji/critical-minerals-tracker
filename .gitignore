@@ -1,0 +1,12 @@
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+dist/
+.env
+.env.local
+*.egg-info/
+.uv/
+.vite/
+
+*/*/__pycache__/*

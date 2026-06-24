@@ -1,0 +1,23 @@
+{
+  "dataset_slug": "critical-minerals-innovation-fund-recipients",
+  "dataset_title": "Critical Minerals Innovation Fund Recipients",
+  "dataset_url": "https://data.ontario.ca/dataset/critical-minerals-innovation-fund-recipients",
+  "resource_id": "0c5066b8-5e07-4883-a461-ae8a6a3d207c",
+  "resource_url": "https://data.ontario.ca/dataset/5c36faae-157f-4821-8c52-ff4018714981/resource/0c5066b8-5e07-4883-a461-ae8a6a3d207c/download/cmif_recipients.csv",
+  "resource_name": "Recipients",
+  "resource_last_modified": "2026-03-17T14:17:23.069512",
+  "resource_size_bytes": 2841,
+  "licence": "Open Government Licence \u2013 Ontario",
+  "maintainer": null,
+  "maintainer_branch": null,
+  "date_range": null,
+  "update_frequency": null,
+  "fetched_at": "2026-06-24T02:48:57.303773+00:00",
+  "total_records": 29,
+  "total_funding_cad": 12023241.0,
+  "unique_organizations": 27,
+  "intakes": [
+    1,
+    2
+  ]
+}

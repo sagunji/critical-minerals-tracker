@@ -1,0 +1,31 @@
+{
+  "last_sync": "2026-06-24T02:49:05.445031+00:00",
+  "last_hash": "2a8e82462ff4",
+  "total_projects": 50,
+  "source_api": "https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/critical_minerals_en/MapServer",
+  "source_name": "Natural Resources Canada \u2014 Critical Minerals Projects Database",
+  "source_url": "https://open.canada.ca/data/en/dataset/22b2db8a-dc12-47f2-9737-99d3da921751",
+  "licence": "Open Government Licence \u2014 Canada",
+  "query_filter": "ProvincesEN LIKE '%Ontario%'",
+  "layers_queried": {
+    "0": "Advanced Project",
+    "1": "Advanced Processing Project",
+    "2": "Producing Mine",
+    "3": "Processing Facility"
+  },
+  "by_stage": {
+    "Advanced Project": 24,
+    "Advanced Processing Project": 8,
+    "Processing Facility": 7,
+    "Producing Mine": 11
+  },
+  "by_mineral": {
+    "Graphite": 3,
+    "Nickel": 25,
+    "Other": 7,
+    "Lithium": 9,
+    "Copper": 4,
+    "Cobalt": 1,
+    "Rare Earths": 1
+  }
+}
