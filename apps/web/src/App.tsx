@@ -3,6 +3,7 @@ import MineralMap from "./components/MineralMap";
 import FilterPanel from "./components/FilterPanel";
 import ProjectDetail from "./components/ProjectDetail";
 import Dashboard from "./components/Dashboard";
+import Changelog from "./components/Changelog";
 import { useData } from "./hooks/useData";
 import type { MineralProject } from "./types";
 import "./App.css";
@@ -151,6 +152,12 @@ function App() {
         ) : (
           <>
             <aside className="sidebar">
+              <Changelog
+                onProjectClick={(id) => {
+                  const found = projects.find((p) => p.id === id);
+                  if (found) setSelectedProject(found);
+                }}
+              />
               <FilterPanel
                 projects={projects}
                 selectedMinerals={selectedMinerals}

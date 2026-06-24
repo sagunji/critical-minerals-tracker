@@ -78,6 +78,49 @@ async def history(date: str = Query(None, description="Specific date (YYYY-MM-DD
     }
 
 
+@app.get("/api/changelog")
+async def changelog(
+    limit: int = Query(10, description="Max entries to return"),
+    project_id: str = Query(None, description="Filter changes for a specific project"),
+):
+    """Return recent changes detected across syncs."""
+    from .services.diff_engine import load_changelog
+
+    all_entries = load_changelog()
+
+    if project_id:
+        filtered = []
+        for entry in all_entries:
+            matching_changes = [c for c in entry["changes"] if c["project_id"] == project_id]
+            if matching_changes:
+                filtered.append({
+                    **entry,
+                    "changes": matching_changes,
+                    "total_changes": len(matching_changes),
+                })
+        all_entries = filtered
+
+    recent = all_entries[-limit:]
+    recent.reverse()
+
+    return {
+        "total_entries": len(all_entries),
+        "entries": recent,
+    }
+
+
+@app.get("/api/changelog/diff")
+async def changelog_diff(
+    old_date: str = Query(..., description="Earlier snapshot date (YYYY-MM-DD)"),
+    new_date: str = Query(..., description="Later snapshot date (YYYY-MM-DD)"),
+):
+    """Compare any two historical snapshots on-demand."""
+    from .services.diff_engine import generate_changelog_entry
+
+    entry = generate_changelog_entry(old_date, new_date)
+    return entry
+
+
 @app.post("/api/reload")
 async def reload():
     """Force reload data from disk (useful after running sync scripts)."""

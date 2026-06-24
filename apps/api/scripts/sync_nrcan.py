@@ -251,12 +251,29 @@ def main():
         date_str = hf.stem.replace("minerals_", "")
         history_entries.append(date_str)
 
+    # Generate changelog if we have at least 2 snapshots
+    changelog_generated = False
+    if len(history_entries) >= 2 and changed:
+        sys.path.insert(0, str(Path(__file__).parent.parent))
+        from src.services.diff_engine import generate_changelog_entry, append_changelog
+
+        prev_date = history_entries[-2]
+        curr_date = history_entries[-1]
+        entry = generate_changelog_entry(prev_date, curr_date)
+        if entry["total_changes"] > 0:
+            append_changelog(entry)
+            changelog_generated = True
+            print(f"\nChangelog: {entry['total_changes']} changes detected ({prev_date} → {curr_date})")
+            for change_type, count in entry["by_type"].items():
+                print(f"  {change_type}: {count}")
+
     # Update sync log with full metadata
     with open(log_path, "w") as f:
         json.dump({
             "last_sync": datetime.now(timezone.utc).isoformat(),
             "last_hash": content_hash,
             "data_changed": changed,
+            "changelog_generated": changelog_generated,
             "total_projects": len(all_projects),
             "source_api": BASE_URL,
             "source_name": "Natural Resources Canada — Critical Minerals Projects Database",

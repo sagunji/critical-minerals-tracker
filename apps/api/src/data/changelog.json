@@ -1,0 +1,32 @@
+[
+  {
+    "from_date": "2026-06-17",
+    "to_date": "2026-06-24",
+    "generated_at": "2026-06-24T04:09:45.099730+00:00",
+    "total_changes": 2,
+    "by_type": {
+      "new_project": 1,
+      "status_change": 1
+    },
+    "changes": [
+      {
+        "type": "new_project",
+        "project_id": "victoria",
+        "project_name": "Victoria",
+        "description": "New project: Victoria (KGHM Polska Mied\u017a S.A.) \u2014 Nickel, Advanced Project",
+        "old_value": null,
+        "new_value": "Advanced Project",
+        "significance": "high"
+      },
+      {
+        "type": "status_change",
+        "project_id": "nickel-rim-south",
+        "project_name": "Nickel Rim South",
+        "description": "Nickel Rim South status: Active \u2192 On hold / suspended",
+        "old_value": "Active",
+        "new_value": "On hold / suspended",
+        "significance": "high"
+      }
+    ]
+  }
+]
