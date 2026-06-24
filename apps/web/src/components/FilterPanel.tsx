@@ -6,12 +6,14 @@ interface FilterPanelProps {
   projects: MineralProject[];
   selectedMinerals: string[];
   selectedStage: string;
+  selectedProvince: string;
   selectedRegion: string;
   selectedOperator: string;
   showFundedOnly: boolean;
   searchQuery: string;
   onMineralToggle: (mineral: string) => void;
   onStageChange: (stage: string) => void;
+  onProvinceChange: (province: string) => void;
   onRegionChange: (region: string) => void;
   onOperatorChange: (operator: string) => void;
   onFundedToggle: () => void;
@@ -25,12 +27,14 @@ export default function FilterPanel({
   projects,
   selectedMinerals,
   selectedStage,
+  selectedProvince,
   selectedRegion,
   selectedOperator,
   showFundedOnly,
   searchQuery,
   onMineralToggle,
   onStageChange,
+  onProvinceChange,
   onRegionChange,
   onOperatorChange,
   onFundedToggle,
@@ -42,10 +46,16 @@ export default function FilterPanel({
   const hasFilters =
     selectedMinerals.length > 0 ||
     selectedStage !== "All Stages" ||
+    selectedProvince !== "All Provinces" ||
     selectedRegion !== "All Regions" ||
     selectedOperator !== "All Operators" ||
     showFundedOnly ||
     searchQuery !== "";
+
+  const provinces = useMemo(() => {
+    const unique = [...new Set(projects.map((p) => p.province))].sort();
+    return ["All Provinces", ...unique];
+  }, [projects]);
 
   const regions = useMemo(() => {
     const unique = [...new Set(projects.map((p) => p.region))].sort();
@@ -109,6 +119,21 @@ export default function FilterPanel({
           {STAGE_OPTIONS.map((stage) => (
             <option key={stage} value={stage}>
               {stage}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="filter-section">
+        <label className="filter-label">Province / Territory</label>
+        <select
+          className="filter-select"
+          value={selectedProvince}
+          onChange={(e) => onProvinceChange(e.target.value)}
+        >
+          {provinces.map((prov) => (
+            <option key={prov} value={prov}>
+              {prov}
             </option>
           ))}
         </select>

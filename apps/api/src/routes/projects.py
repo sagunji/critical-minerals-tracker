@@ -12,6 +12,7 @@ async def list_projects(
     mineral: Optional[str] = Query(None, description="Filter by primary mineral"),
     stage: Optional[str] = Query(None, description="Filter by development stage"),
     region: Optional[str] = Query(None, description="Filter by region (partial match)"),
+    province: Optional[str] = Query(None, description="Filter by province (partial match)"),
     operator: Optional[str] = Query(None, description="Filter by operator (partial match)"),
     status: Optional[str] = Query(None, description="Filter by activity status"),
     funded: Optional[bool] = Query(None, description="Only show government-funded projects"),
@@ -24,6 +25,8 @@ async def list_projects(
         projects = [p for p in projects if p.stage.lower() == stage.lower()]
     if region:
         projects = [p for p in projects if region.lower() in p.region.lower()]
+    if province:
+        projects = [p for p in projects if province.lower() in p.province.lower()]
     if operator:
         projects = [p for p in projects if operator.lower() in p.operator.lower()]
     if status:

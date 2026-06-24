@@ -15,6 +15,7 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<MineralProject | null>(null);
   const [selectedMinerals, setSelectedMinerals] = useState<string[]>([]);
   const [selectedStage, setSelectedStage] = useState("All Stages");
+  const [selectedProvince, setSelectedProvince] = useState("All Provinces");
   const [selectedRegion, setSelectedRegion] = useState("All Regions");
   const [selectedOperator, setSelectedOperator] = useState("All Operators");
   const [showFundedOnly, setShowFundedOnly] = useState(false);
@@ -61,6 +62,10 @@ function App() {
         if (project.stage !== selectedStage) return false;
       }
 
+      if (selectedProvince !== "All Provinces") {
+        if (project.province !== selectedProvince) return false;
+      }
+
       if (selectedRegion !== "All Regions") {
         if (project.region !== selectedRegion) return false;
       }
@@ -85,7 +90,7 @@ function App() {
 
       return true;
     });
-  }, [projects, selectedMinerals, selectedStage, selectedRegion, selectedOperator, showFundedOnly, searchQuery]);
+  }, [projects, selectedMinerals, selectedStage, selectedProvince, selectedRegion, selectedOperator, showFundedOnly, searchQuery]);
 
   const handleMineralToggle = (mineral: string) => {
     setSelectedMinerals((prev) =>
@@ -96,6 +101,7 @@ function App() {
   const handleReset = () => {
     setSelectedMinerals([]);
     setSelectedStage("All Stages");
+    setSelectedProvince("All Provinces");
     setSelectedRegion("All Regions");
     setSelectedOperator("All Operators");
     setShowFundedOnly(false);
@@ -128,7 +134,7 @@ function App() {
             <span className="header-icon">⛏️</span>
             Critical Minerals Tracker
           </h1>
-          <span className="header-subtitle">Northern Ontario</span>
+          <span className="header-subtitle">Canada</span>
         </div>
         <nav className="header-nav">
           <button
@@ -162,12 +168,14 @@ function App() {
                 projects={projects}
                 selectedMinerals={selectedMinerals}
                 selectedStage={selectedStage}
+                selectedProvince={selectedProvince}
                 selectedRegion={selectedRegion}
                 selectedOperator={selectedOperator}
                 showFundedOnly={showFundedOnly}
                 searchQuery={searchQuery}
                 onMineralToggle={handleMineralToggle}
                 onStageChange={setSelectedStage}
+                onProvinceChange={setSelectedProvince}
                 onRegionChange={setSelectedRegion}
                 onOperatorChange={setSelectedOperator}
                 onFundedToggle={() => setShowFundedOnly((v) => !v)}

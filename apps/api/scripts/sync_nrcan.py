@@ -2,6 +2,8 @@
 Sync script: Fetches critical minerals project data from NRCan ArcGIS REST API
 and generates minerals.json (the source of truth for the API).
 
+Covers ALL of Canada (292+ projects across every province/territory).
+
 NRCan API Layers:
   0 = Advanced exploration projects
   1 = Processing projects (proposed)
@@ -38,10 +40,10 @@ SYNC_LOG_FILE = DATA_DIR / "sync_log.json"
 
 
 def fetch_layer(layer_id: int) -> list[dict]:
-    """Fetch all Ontario records from a single NRCan MapServer layer."""
+    """Fetch all Canadian records from a single NRCan MapServer layer."""
     url = (
         f"{BASE_URL}/{layer_id}/query?"
-        f"where=ProvincesEN+LIKE+'%25Ontario%25'"
+        f"where=1%3D1"
         f"&outFields=*"
         f"&returnGeometry=true"
         f"&outSR=4326"
@@ -72,19 +74,43 @@ def slugify(name: str) -> str:
     return slug
 
 
-def determine_region(lat: float, lng: float) -> str:
-    """Rough region classification based on coordinates."""
-    if lat > 51:
-        return "Far North"
-    if -82.5 < lng < -80.0 and 46.0 < lat < 47.2:
-        return "Sudbury Basin"
-    if -82.0 < lng < -80.5 and 47.5 < lat < 49.5:
-        return "Timmins Mining Camp"
-    if lng < -85:
-        return "Northwestern Ontario"
-    if lng > -78:
-        return "Eastern Ontario"
-    return "North-Central Ontario"
+PROVINCE_SHORT = {
+    "Ontario": "ON",
+    "Quebec": "QC",
+    "British Columbia": "BC",
+    "Saskatchewan": "SK",
+    "Manitoba": "MB",
+    "Alberta": "AB",
+    "Yukon": "YT",
+    "Northwest Territories": "NT",
+    "Nunavut": "NU",
+    "New Brunswick": "NB",
+    "Newfoundland and Labrador": "NL",
+    "Nova Scotia": "NS",
+    "Prince Edward Island": "PE",
+}
+
+
+def determine_region(province: str) -> str:
+    """Map province to a broad geographic region for grouping."""
+    western = {"British Columbia", "Alberta"}
+    prairies = {"Saskatchewan", "Manitoba"}
+    northern = {"Yukon", "Northwest Territories", "Nunavut"}
+    atlantic = {"New Brunswick", "Nova Scotia", "Newfoundland and Labrador", "Prince Edward Island"}
+
+    if province in western:
+        return "Western Canada"
+    if province in prairies:
+        return "Prairies"
+    if province == "Ontario":
+        return "Ontario"
+    if province == "Quebec":
+        return "Quebec"
+    if province in northern:
+        return "Northern Territories"
+    if province in atlantic:
+        return "Atlantic Canada"
+    return "Other"
 
 
 def parse_minerals(commodities_str: str) -> tuple[str, list[str]]:
@@ -105,6 +131,17 @@ def parse_minerals(commodities_str: str) -> tuple[str, list[str]]:
         "palladium": "Palladium",
         "chromite": "Chromite",
         "rare earth": "Rare Earths",
+        "uranium": "Uranium",
+        "potash": "Potash",
+        "zinc": "Zinc",
+        "titanium": "Titanium",
+        "vanadium": "Vanadium",
+        "tungsten": "Tungsten",
+        "niobium": "Niobium",
+        "molybdenum": "Molybdenum",
+        "helium": "Helium",
+        "phosphate": "Phosphate",
+        "manganese": "Manganese",
     }
 
     primary = "Other"
@@ -131,6 +168,7 @@ def transform_feature(feature: dict, stage: str) -> dict:
     commodities = attrs.get("CommoditiesEN") or ""
     primary_mineral, minerals = parse_minerals(commodities)
 
+    province = (attrs.get("ProvincesEN") or "Unknown").strip()
     status = (attrs.get("ActivityStatusEN") or "Unknown").strip()
     website = attrs.get("Website") or None
     object_id = attrs.get("OBJECTID")
@@ -150,8 +188,8 @@ def transform_feature(feature: dict, stage: str) -> dict:
         "status": status,
         "latitude": round(lat, 6),
         "longitude": round(lng, 6),
-        "region": determine_region(lat, lng),
-        "province": "Ontario",
+        "region": determine_region(province),
+        "province": province,
         "website": website,
         "source": f"NRCan Critical Minerals Inventory (OBJECTID: {object_id})",
         "nrcanObjectId": object_id,
@@ -201,7 +239,7 @@ def main():
     all_projects = deduplicate(all_projects)
     all_projects.sort(key=lambda p: p["name"])
 
-    print(f"\nTotal unique Ontario projects: {len(all_projects)}")
+    print(f"\nTotal unique Canadian projects: {len(all_projects)}")
 
     # Check for changes
     content_hash = compute_hash(all_projects)
@@ -267,6 +305,9 @@ def main():
             for change_type, count in entry["by_type"].items():
                 print(f"  {change_type}: {count}")
 
+    # Count by province
+    province_counts = dict(Counter(p["province"] for p in all_projects))
+
     # Update sync log with full metadata
     with open(log_path, "w") as f:
         json.dump({
@@ -279,10 +320,11 @@ def main():
             "source_name": "Natural Resources Canada — Critical Minerals Projects Database",
             "source_url": "https://open.canada.ca/data/en/dataset/22b2db8a-dc12-47f2-9737-99d3da921751",
             "licence": "Open Government Licence — Canada",
-            "query_filter": "ProvincesEN LIKE '%Ontario%'",
+            "query_filter": "All provinces and territories",
             "layers_queried": {str(k): v for k, v in LAYERS.items()},
             "by_stage": stage_counts,
             "by_mineral": mineral_counts,
+            "by_province": province_counts,
             "history_snapshots": history_entries,
             "total_snapshots": len(history_entries),
         }, f, indent=2)

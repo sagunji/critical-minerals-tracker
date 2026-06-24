@@ -1,13 +1,14 @@
 {
-  "last_sync": "2026-06-24T03:58:46.432817+00:00",
-  "last_hash": "808294953a57",
+  "last_sync": "2026-06-24T04:17:19.290974+00:00",
+  "last_hash": "4fb12b4aec40",
   "data_changed": true,
-  "total_projects": 50,
+  "changelog_generated": true,
+  "total_projects": 291,
   "source_api": "https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/critical_minerals_en/MapServer",
   "source_name": "Natural Resources Canada \u2014 Critical Minerals Projects Database",
   "source_url": "https://open.canada.ca/data/en/dataset/22b2db8a-dc12-47f2-9737-99d3da921751",
   "licence": "Open Government Licence \u2014 Canada",
-  "query_filter": "ProvincesEN LIKE '%Ontario%'",
+  "query_filter": "All provinces and territories",
   "layers_queried": {
     "0": "Advanced Project",
     "1": "Advanced Processing Project",
@@ -15,22 +16,48 @@
     "3": "Processing Facility"
   },
   "by_stage": {
-    "Advanced Project": 24,
-    "Advanced Processing Project": 8,
-    "Processing Facility": 7,
-    "Producing Mine": 11
+    "Advanced Project": 160,
+    "Producing Mine": 69,
+    "Processing Facility": 30,
+    "Advanced Processing Project": 32
   },
   "by_mineral": {
-    "Graphite": 3,
-    "Nickel": 25,
-    "Other": 7,
-    "Lithium": 9,
-    "Copper": 4,
-    "Cobalt": 1,
-    "Rare Earths": 1
+    "Copper": 66,
+    "Zinc": 14,
+    "Lithium": 31,
+    "Graphite": 12,
+    "Niobium": 7,
+    "Potash": 20,
+    "Other": 37,
+    "Helium": 11,
+    "Phosphate": 4,
+    "Rare Earths": 14,
+    "Molybdenum": 2,
+    "Manganese": 4,
+    "Nickel": 41,
+    "Titanium": 7,
+    "Uranium": 15,
+    "Tungsten": 3,
+    "Vanadium": 2,
+    "Cobalt": 1
+  },
+  "by_province": {
+    "Manitoba": 15,
+    "Quebec": 79,
+    "British Columbia": 46,
+    "Ontario": 50,
+    "Saskatchewan": 43,
+    "New Brunswick": 9,
+    "Alberta": 11,
+    "Newfoundland and Labrador": 13,
+    "Yukon": 12,
+    "Nova Scotia": 2,
+    "Nunavut": 6,
+    "Northwest Territories": 5
   },
   "history_snapshots": [
+    "2026-06-17",
     "2026-06-24"
   ],
-  "total_snapshots": 1
+  "total_snapshots": 2
 }

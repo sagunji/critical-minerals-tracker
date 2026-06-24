@@ -48,6 +48,17 @@ export const MINERAL_COLORS: Record<string, string> = {
   Graphite: "#455A64",
   Chromite: "#8D6E63",
   "Rare Earths": "#AB47BC",
+  Uranium: "#FDD835",
+  Potash: "#E91E63",
+  Zinc: "#607D8B",
+  Titanium: "#00BCD4",
+  Vanadium: "#FF5722",
+  Tungsten: "#795548",
+  Niobium: "#3F51B5",
+  Molybdenum: "#009688",
+  Helium: "#FFAB91",
+  Phosphate: "#66BB6A",
+  Manganese: "#5D4037",
   Other: "#9E9E9E",
 };
 

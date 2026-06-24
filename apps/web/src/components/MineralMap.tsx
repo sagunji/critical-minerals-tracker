@@ -21,12 +21,12 @@ function FlyToProject({ project }: { project: MineralProject | null }) {
 }
 
 export default function MineralMap({ projects, selectedProject, onSelectProject }: MineralMapProps) {
-  const northernOntarioCenter: [number, number] = [49.5, -84.5];
+  const canadaCenter: [number, number] = [56.0, -96.0];
 
   return (
     <MapContainer
-      center={northernOntarioCenter}
-      zoom={5}
+      center={canadaCenter}
+      zoom={4}
       className="mineral-map"
       zoomControl={true}
     >
