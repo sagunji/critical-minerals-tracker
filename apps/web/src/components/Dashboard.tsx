@@ -38,80 +38,80 @@ export default function Dashboard({ projects }: DashboardProps) {
   const maxRegionCount = Math.max(...Object.values(regionCounts), 1);
 
   return (
-    <div className="dashboard">
-      <h3 className="dashboard-title">Northern Ontario Critical Minerals</h3>
+    <div className="flex-1 overflow-y-auto p-8">
+      <h3 className="font-display text-xl mb-6">Northern Ontario Critical Minerals</h3>
 
-      <div className="stats-grid">
-        <div className="stat-card">
-          <div className="stat-value">{projects.length}</div>
-          <div className="stat-label">Total Projects</div>
+      <div className="grid grid-cols-4 gap-4 mb-8">
+        <div className="bg-bg-card rounded-lg p-4 border border-border text-center">
+          <div className="text-2xl font-bold text-text">{projects.length}</div>
+          <div className="text-xs text-text-muted mt-1">Total Projects</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-value">{activeProjects}</div>
-          <div className="stat-label">Active</div>
+        <div className="bg-bg-card rounded-lg p-4 border border-border text-center">
+          <div className="text-2xl font-bold text-text">{activeProjects}</div>
+          <div className="text-xs text-text-muted mt-1">Active</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-value">{fundedProjects}</div>
-          <div className="stat-label">Gov. Funded</div>
+        <div className="bg-bg-card rounded-lg p-4 border border-border text-center">
+          <div className="text-2xl font-bold text-text">{fundedProjects}</div>
+          <div className="text-xs text-text-muted mt-1">Gov. Funded</div>
         </div>
-        <div className="stat-card">
-          <div className="stat-value">{Object.keys(mineralCounts).length}</div>
-          <div className="stat-label">Mineral Types</div>
+        <div className="bg-bg-card rounded-lg p-4 border border-border text-center">
+          <div className="text-2xl font-bold text-text">{Object.keys(mineralCounts).length}</div>
+          <div className="text-xs text-text-muted mt-1">Mineral Types</div>
         </div>
       </div>
 
-      <div className="dashboard-two-col">
-        <div className="chart-section">
-          <h4>By Primary Mineral</h4>
-          <div className="bar-chart">
+      <div className="grid grid-cols-2 gap-8 mb-8">
+        <div className="space-y-3">
+          <h4 className="text-sm font-semibold text-text">By Primary Mineral</h4>
+          <div className="space-y-2">
             {sortedMinerals.map(([mineral, count]) => (
-              <div key={mineral} className="bar-row">
-                <span className="bar-label">{mineral}</span>
-                <div className="bar-track">
+              <div key={mineral} className="flex items-center gap-2 text-xs">
+                <span className="w-28 truncate text-text-muted">{mineral}</span>
+                <div className="flex-1 h-4 bg-bg-muted rounded-sm overflow-hidden">
                   <div
-                    className="bar-fill"
+                    className="h-full rounded-sm transition-all"
                     style={{
                       width: `${(count / maxCount) * 100}%`,
                       backgroundColor: MINERAL_COLORS[mineral] || MINERAL_COLORS.Other,
                     }}
                   />
                 </div>
-                <span className="bar-count">{count}</span>
+                <span className="w-6 text-right text-text-muted">{count}</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="chart-section">
-          <h4>By Development Stage</h4>
-          <div className="stage-pills">
+        <div className="space-y-3">
+          <h4 className="text-sm font-semibold text-text">By Development Stage</h4>
+          <div className="space-y-2">
             {stageCounts.map((stage) => (
-              <div key={stage.label} className="stage-pill">
-                <div className="stage-pill-bar" style={{ backgroundColor: stage.color }} />
-                <span className="stage-pill-count">{stage.count}</span>
-                <span className="stage-pill-label">{stage.label}</span>
+              <div key={stage.label} className="flex items-center gap-3 p-2 rounded-md bg-bg">
+                <div
+                  className="w-1 h-6 rounded-sm flex-shrink-0"
+                  style={{ backgroundColor: stage.color }}
+                />
+                <span className="text-lg font-bold text-text">{stage.count}</span>
+                <span className="text-xs text-text-muted">{stage.label}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="chart-section">
-        <h4>By Region</h4>
-        <div className="bar-chart">
+      <div className="space-y-3">
+        <h4 className="text-sm font-semibold text-text">By Region</h4>
+        <div className="space-y-2">
           {sortedRegions.map(([region, count]) => (
-            <div key={region} className="bar-row">
-              <span className="bar-label">{region}</span>
-              <div className="bar-track">
+            <div key={region} className="flex items-center gap-2 text-xs">
+              <span className="w-28 truncate text-text-muted">{region}</span>
+              <div className="flex-1 h-4 bg-bg-muted rounded-sm overflow-hidden">
                 <div
-                  className="bar-fill"
-                  style={{
-                    width: `${(count / maxRegionCount) * 100}%`,
-                    backgroundColor: "var(--accent)",
-                  }}
+                  className="h-full rounded-sm transition-all bg-accent"
+                  style={{ width: `${(count / maxRegionCount) * 100}%` }}
                 />
               </div>
-              <span className="bar-count">{count}</span>
+              <span className="w-6 text-right text-text-muted">{count}</span>
             </div>
           ))}
         </div>

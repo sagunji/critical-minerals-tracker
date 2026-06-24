@@ -23,6 +23,9 @@ interface FilterPanelProps {
   totalCount: number;
 }
 
+const inputClass =
+  "w-full px-3 py-1.5 text-sm border border-border rounded-md bg-bg-card focus:outline-none focus:ring-1 focus:ring-accent";
+
 export default function FilterPanel({
   projects,
   selectedMinerals,
@@ -84,35 +87,42 @@ export default function FilterPanel({
   }, [projects]);
 
   return (
-    <div className="filter-panel">
-      <div className="filter-header">
-        <h3>Filters</h3>
+    <div className="p-4 space-y-4">
+      <div className="flex items-center justify-between">
+        <h3 className="font-display text-base font-semibold">Filters</h3>
         {hasFilters && (
-          <button className="reset-btn" onClick={onReset}>
+          <button
+            className="text-xs text-accent hover:text-accent-hover font-medium"
+            onClick={onReset}
+          >
             Reset all
           </button>
         )}
       </div>
 
-      <div className="filter-count">
-        Showing <strong>{projectCount}</strong> of {totalCount} projects
+      <div className="text-xs text-text-muted pb-3 border-b border-border">
+        Showing <strong className="text-text">{projectCount}</strong> of {totalCount} projects
       </div>
 
-      <div className="filter-section">
-        <label className="filter-label">Search</label>
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-text-muted uppercase tracking-wide">
+          Search
+        </label>
         <input
           type="text"
-          className="filter-input"
+          className={inputClass}
           placeholder="Project, operator, or region..."
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
         />
       </div>
 
-      <div className="filter-section">
-        <label className="filter-label">Development Stage</label>
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-text-muted uppercase tracking-wide">
+          Development Stage
+        </label>
         <select
-          className="filter-select"
+          className={inputClass}
           value={selectedStage}
           onChange={(e) => onStageChange(e.target.value)}
         >
@@ -124,10 +134,12 @@ export default function FilterPanel({
         </select>
       </div>
 
-      <div className="filter-section">
-        <label className="filter-label">Province / Territory</label>
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-text-muted uppercase tracking-wide">
+          Province / Territory
+        </label>
         <select
-          className="filter-select"
+          className={inputClass}
           value={selectedProvince}
           onChange={(e) => onProvinceChange(e.target.value)}
         >
@@ -139,10 +151,12 @@ export default function FilterPanel({
         </select>
       </div>
 
-      <div className="filter-section">
-        <label className="filter-label">Region</label>
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-text-muted uppercase tracking-wide">
+          Region
+        </label>
         <select
-          className="filter-select"
+          className={inputClass}
           value={selectedRegion}
           onChange={(e) => onRegionChange(e.target.value)}
         >
@@ -154,10 +168,12 @@ export default function FilterPanel({
         </select>
       </div>
 
-      <div className="filter-section">
-        <label className="filter-label">Operator</label>
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-text-muted uppercase tracking-wide">
+          Operator
+        </label>
         <select
-          className="filter-select"
+          className={inputClass}
           value={selectedOperator}
           onChange={(e) => onOperatorChange(e.target.value)}
         >
@@ -169,37 +185,60 @@ export default function FilterPanel({
         </select>
       </div>
 
-      <div className="filter-section">
-        <label className="filter-label">Quick Filters</label>
-        <div className="toggle-filters">
-          <label className="toggle-filter">
-            <input
-              type="checkbox"
-              checked={showFundedOnly}
-              onChange={onFundedToggle}
-            />
-            <span className="toggle-label">🏛️ Government funded</span>
-          </label>
-        </div>
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-text-muted uppercase tracking-wide">
+          Quick Filters
+        </label>
+        <label
+          className={`flex items-center gap-2 text-sm cursor-pointer px-3 py-1.5 rounded-md border transition-colors ${
+            showFundedOnly
+              ? "border-accent bg-bg-muted"
+              : "border-border bg-bg-muted"
+          }`}
+        >
+          <input
+            type="checkbox"
+            className="accent-accent"
+            checked={showFundedOnly}
+            onChange={onFundedToggle}
+          />
+          <span>🏛️ Government funded</span>
+        </label>
       </div>
 
-      <div className="filter-section">
-        <label className="filter-label">Mineral Type</label>
-        <div className="mineral-checkboxes">
+      <div className="space-y-1.5">
+        <label className="text-xs font-medium text-text-muted uppercase tracking-wide">
+          Mineral Type
+        </label>
+        <div className="space-y-1">
           {Object.entries(MINERAL_COLORS)
             .filter(([key]) => key !== "Other")
-            .map(([mineral, color]) => (
-              <label key={mineral} className="mineral-checkbox">
-                <input
-                  type="checkbox"
-                  checked={selectedMinerals.includes(mineral)}
-                  onChange={() => onMineralToggle(mineral)}
-                />
-                <span className="mineral-dot" style={{ backgroundColor: color }} />
-                <span>{mineral}</span>
-                <span className="mineral-count">{mineralCounts[mineral] || 0}</span>
-              </label>
-            ))}
+            .map(([mineral, color]) => {
+              const checked = selectedMinerals.includes(mineral);
+              return (
+                <label
+                  key={mineral}
+                  className="flex items-center gap-2 text-sm cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    className="accent-accent"
+                    checked={checked}
+                    onChange={() => onMineralToggle(mineral)}
+                  />
+                  <span
+                    className={`w-2.5 h-2.5 rounded-full flex-shrink-0 transition-opacity ${
+                      checked ? "opacity-100" : "opacity-50"
+                    }`}
+                    style={{ backgroundColor: color }}
+                  />
+                  <span>{mineral}</span>
+                  <span className="ml-auto text-xs text-text-muted">
+                    {mineralCounts[mineral] || 0}
+                  </span>
+                </label>
+              );
+            })}
         </div>
       </div>
     </div>

@@ -1,1 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #faf7f2;
+  --color-bg-card: #ffffff;
+  --color-bg-muted: #f0ebe3;
+  --color-border: #e0d9cf;
+  --color-text: #2c2418;
+  --color-text-muted: #8c7e6a;
+  --color-accent: #b87333;
+  --color-accent-hover: #a06028;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "DM Serif Display", serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@utility animate-in {
+  animation: enter 200ms ease-out;
+}
+
+@utility animate-out {
+  animation: exit 150ms ease-in forwards;
+}
+
+@utility fade-in-0 {
+  --tw-enter-opacity: 0;
+}
+
+@utility fade-out-0 {
+  --tw-exit-opacity: 0;
+}
+
+@utility zoom-in-95 {
+  --tw-enter-scale: 0.95;
+}
+
+@utility zoom-out-95 {
+  --tw-exit-scale: 0.95;
+}
+
+@utility slide-in-from-top-2 {
+  --tw-enter-translate-y: -0.5rem;
+}
+
+@utility slide-in-from-bottom-2 {
+  --tw-enter-translate-y: 0.5rem;
+}
+
+@utility slide-in-from-left-2 {
+  --tw-enter-translate-x: -0.5rem;
+}
+
+@utility slide-in-from-right-2 {
+  --tw-enter-translate-x: 0.5rem;
+}
+
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(
+        var(--tw-enter-translate-x, 0),
+        var(--tw-enter-translate-y, 0),
+        0
+      )
+      scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1));
+  }
+}
+
+@keyframes exit {
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(
+        var(--tw-exit-translate-x, 0),
+        var(--tw-exit-translate-y, 0),
+        0
+      )
+      scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1));
+  }
+}
+
+/* Leaflet needs its own z-index context */
+.leaflet-container {
+  z-index: 0;
+  font-family: var(--font-sans);
+}
+
+.selected-pin-icon {
+  background: none !important;
+  border: none !important;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+}

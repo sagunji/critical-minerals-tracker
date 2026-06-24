@@ -49,7 +49,7 @@ export default function MineralMap({ projects, selectedProject, onSelectProject 
     <MapContainer
       center={canadaCenter}
       zoom={4}
-      className="mineral-map"
+      className="w-full h-full"
       zoomControl={true}
     >
       <TileLayer
@@ -75,14 +75,14 @@ export default function MineralMap({ projects, selectedProject, onSelectProject 
             }}
           >
             <Popup>
-              <div className="map-popup">
-                <strong>{project.name}</strong>
+              <div className="text-xs leading-relaxed">
+                <strong className="text-sm">{project.name}</strong>
                 <br />
-                <span className="popup-operator">{project.operator}</span>
+                <span className="text-text-muted">{project.operator}</span>
                 <br />
-                <span className="popup-mineral">{project.primaryMineral}</span>
+                <span className="font-medium">{project.primaryMineral}</span>
                 {" · "}
-                <span className="popup-stage">{project.stage}</span>
+                <span className="text-text-muted">{project.stage}</span>
               </div>
             </Popup>
           </CircleMarker>

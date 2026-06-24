@@ -4,10 +4,10 @@ import FilterPanel from "./components/FilterPanel";
 import ProjectDetail from "./components/ProjectDetail";
 import Dashboard from "./components/Dashboard";
 import NewsPopover from "./components/NewsPopover";
+import { Popover, PopoverTrigger, PopoverContent } from "./components/ui/popover";
 
 import { useData } from "./hooks/useData";
 import type { MineralProject } from "./types";
-import "./App.css";
 
 type View = "map" | "dashboard";
 
@@ -110,57 +110,62 @@ function App() {
     setSearchQuery("");
   };
 
+  const navBtnClass = (active: boolean) =>
+    `px-3 py-1.5 text-sm font-medium rounded-md cursor-pointer transition-colors ${
+      active
+        ? "bg-accent text-white"
+        : "text-text-muted hover:text-text hover:bg-bg-muted"
+    }`;
+
   if (loading) {
     return (
-      <div className="loading-screen">
-        <div className="loading-spinner" />
-        <p>Loading Critical Minerals Data...</p>
+      <div className="flex flex-col items-center justify-center h-screen gap-4">
+        <div className="w-10 h-10 border-[3px] border-border border-t-accent rounded-full animate-spin" />
+        <p className="text-text-muted">Loading Critical Minerals Data...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="error-screen">
-        <h2>Error Loading Data</h2>
-        <p>{error}</p>
+      <div className="flex flex-col items-center justify-center h-screen gap-4">
+        <h2 className="font-display text-xl text-text">Error Loading Data</h2>
+        <p className="text-text-muted">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="app">
-      <header className="app-header">
-        <div className="header-left">
-          <h1>
-            <span className="header-icon">⛏️</span>
+    <div className="h-screen flex flex-col">
+      <header className="h-14 flex items-center justify-between px-4 border-b border-border bg-bg-card flex-shrink-0">
+        <div className="flex items-center gap-4">
+          <h1 className="font-display text-lg font-normal flex items-center gap-2 text-accent">
+            <span className="text-xl">⛏️</span>
             Critical Minerals Tracker
           </h1>
-          <span className="header-subtitle">Canada</span>
+          <span className="text-sm text-text-muted px-2.5 py-0.5 bg-bg-muted rounded-full">
+            Canada
+          </span>
         </div>
-        <nav className="header-nav">
+        <nav className="flex items-center gap-1">
           <button
-            className={`nav-btn ${activeView === "map" ? "active" : ""}`}
+            className={navBtnClass(activeView === "map")}
             onClick={() => setActiveView("map")}
           >
             Map
           </button>
           <button
-            className={`nav-btn ${activeView === "dashboard" ? "active" : ""}`}
+            className={navBtnClass(activeView === "dashboard")}
             onClick={() => setActiveView("dashboard")}
           >
             Stats
           </button>
-          <div className="news-trigger-wrapper">
-            <button
-              className={`nav-btn ${newsOpen ? "active" : ""}`}
-              onClick={() => setNewsOpen((v) => !v)}
-            >
-              News
-            </button>
-            {newsOpen && (
+          <Popover open={newsOpen} onOpenChange={setNewsOpen}>
+            <PopoverTrigger asChild>
+              <button className={navBtnClass(newsOpen)}>News</button>
+            </PopoverTrigger>
+            <PopoverContent align="end" sideOffset={8} className="w-auto p-0 overflow-hidden">
               <NewsPopover
-                onClose={() => setNewsOpen(false)}
                 onProjectClick={(id) => {
                   const found = projects.find((p) => p.id === id);
                   if (found) {
@@ -170,17 +175,17 @@ function App() {
                   }
                 }}
               />
-            )}
-          </div>
+            </PopoverContent>
+          </Popover>
         </nav>
       </header>
 
-      <main className="app-main">
+      <main className="flex-1 flex overflow-hidden">
         {activeView === "dashboard" ? (
           <Dashboard projects={projects} />
         ) : (
           <>
-            <aside className="sidebar">
+            <aside className="w-72 border-r border-border bg-bg-card overflow-y-auto flex-shrink-0">
               <FilterPanel
                 projects={projects}
                 selectedMinerals={selectedMinerals}
@@ -203,7 +208,7 @@ function App() {
               />
             </aside>
 
-            <section className="map-section">
+            <section className="flex-1 relative">
               <MineralMap
                 projects={filteredProjects}
                 selectedProject={selectedProject}
@@ -212,7 +217,7 @@ function App() {
             </section>
 
             {selectedProject && (
-              <aside className="detail-sidebar">
+              <aside className="w-96 border-l border-border bg-bg-card overflow-y-auto flex-shrink-0">
                 <ProjectDetail
                   project={selectedProject}
                   onClose={() => setSelectedProject(null)}
