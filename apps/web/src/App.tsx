@@ -3,7 +3,8 @@ import MineralMap from "./components/MineralMap";
 import FilterPanel from "./components/FilterPanel";
 import ProjectDetail from "./components/ProjectDetail";
 import Dashboard from "./components/Dashboard";
-import Changelog from "./components/Changelog";
+import NewsPopover from "./components/NewsPopover";
+
 import { useData } from "./hooks/useData";
 import type { MineralProject } from "./types";
 import "./App.css";
@@ -21,6 +22,7 @@ function App() {
   const [showFundedOnly, setShowFundedOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeView, setActiveView] = useState<View>("map");
+  const [newsOpen, setNewsOpen] = useState(false);
 
   useEffect(() => {
     if (projects.length === 0) return;
@@ -149,6 +151,27 @@ function App() {
           >
             Stats
           </button>
+          <div className="news-trigger-wrapper">
+            <button
+              className={`nav-btn ${newsOpen ? "active" : ""}`}
+              onClick={() => setNewsOpen((v) => !v)}
+            >
+              News
+            </button>
+            {newsOpen && (
+              <NewsPopover
+                onClose={() => setNewsOpen(false)}
+                onProjectClick={(id) => {
+                  const found = projects.find((p) => p.id === id);
+                  if (found) {
+                    setSelectedProject(found);
+                    setActiveView("map");
+                    setNewsOpen(false);
+                  }
+                }}
+              />
+            )}
+          </div>
         </nav>
       </header>
 
@@ -158,12 +181,6 @@ function App() {
         ) : (
           <>
             <aside className="sidebar">
-              <Changelog
-                onProjectClick={(id) => {
-                  const found = projects.find((p) => p.id === id);
-                  if (found) setSelectedProject(found);
-                }}
-              />
               <FilterPanel
                 projects={projects}
                 selectedMinerals={selectedMinerals}

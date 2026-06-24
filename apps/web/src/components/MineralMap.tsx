@@ -1,5 +1,6 @@
-import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from "react-leaflet";
-import { useEffect } from "react";
+import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap } from "react-leaflet";
+import { useEffect, useMemo } from "react";
+import L from "leaflet";
 import type { MineralProject } from "../types";
 import { getMineralColor } from "../types";
 import "leaflet/dist/leaflet.css";
@@ -8,6 +9,22 @@ interface MineralMapProps {
   projects: MineralProject[];
   selectedProject: MineralProject | null;
   onSelectProject: (project: MineralProject) => void;
+}
+
+function createPinIcon(color: string) {
+  const svg = `
+    <svg width="32" height="44" viewBox="0 0 32 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 0C7.16 0 0 7.16 0 16c0 12 16 28 16 28s16-16 16-28C32 7.16 24.84 0 16 0z" fill="${color}"/>
+      <path d="M16 0C7.16 0 0 7.16 0 16c0 12 16 28 16 28s16-16 16-28C32 7.16 24.84 0 16 0z" fill="none" stroke="white" stroke-width="2"/>
+      <circle cx="16" cy="16" r="7" fill="white"/>
+    </svg>`;
+  return L.divIcon({
+    html: svg,
+    className: "selected-pin-icon",
+    iconSize: [32, 44],
+    iconAnchor: [16, 44],
+    popupAnchor: [0, -44],
+  });
 }
 
 function FlyToProject({ project }: { project: MineralProject | null }) {
@@ -22,6 +39,11 @@ function FlyToProject({ project }: { project: MineralProject | null }) {
 
 export default function MineralMap({ projects, selectedProject, onSelectProject }: MineralMapProps) {
   const canadaCenter: [number, number] = [56.0, -96.0];
+
+  const pinIcon = useMemo(() => {
+    if (!selectedProject) return null;
+    return createPinIcon(getMineralColor(selectedProject.primaryMineral));
+  }, [selectedProject]);
 
   return (
     <MapContainer
@@ -41,12 +63,12 @@ export default function MineralMap({ projects, selectedProject, onSelectProject 
           <CircleMarker
             key={project.id}
             center={[project.latitude, project.longitude]}
-            radius={isSelected ? 12 : 8}
+            radius={isSelected ? 10 : 8}
             pathOptions={{
               color: isSelected ? "#ffffff" : getMineralColor(project.primaryMineral),
               fillColor: getMineralColor(project.primaryMineral),
               fillOpacity: isSelected ? 1 : 0.8,
-              weight: isSelected ? 3 : 1.5,
+              weight: isSelected ? 2 : 1.5,
             }}
             eventHandlers={{
               click: () => onSelectProject(project),
@@ -66,6 +88,13 @@ export default function MineralMap({ projects, selectedProject, onSelectProject 
           </CircleMarker>
         );
       })}
+      {selectedProject && pinIcon && (
+        <Marker
+          position={[selectedProject.latitude, selectedProject.longitude]}
+          icon={pinIcon}
+          zIndexOffset={1000}
+        />
+      )}
     </MapContainer>
   );
 }
