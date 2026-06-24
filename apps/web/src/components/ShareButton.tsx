@@ -16,12 +16,15 @@ export default function ShareButton({ project }: Props) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      const input = document.createElement("input");
-      input.value = shareUrl;
-      document.body.appendChild(input);
-      input.select();
+      const textarea = document.createElement("textarea");
+      textarea.value = shareUrl;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
       document.execCommand("copy");
-      document.body.removeChild(input);
+      document.body.removeChild(textarea);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -34,10 +37,7 @@ export default function ShareButton({ project }: Props) {
       `Primary Mineral: ${project.primaryMineral}`,
       `Stage: ${project.stage}`,
       `Region: ${project.region}`,
-      project.investmentCAD ? `Investment: ${formatInvestment(project.investmentCAD)}` : null,
-      project.annualProductionTarget ? `Production: ${project.annualProductionTarget}` : null,
-      ``,
-      project.description,
+      `Status: ${project.status}`,
       ``,
       `Source: ${project.source}`,
       `Link: ${shareUrl}`,
@@ -64,10 +64,4 @@ export default function ShareButton({ project }: Props) {
       </button>
     </div>
   );
-}
-
-function formatInvestment(amount: number): string {
-  if (amount >= 1_000_000_000) return `$${(amount / 1_000_000_000).toFixed(1)}B CAD`;
-  if (amount >= 1_000_000) return `$${(amount / 1_000_000).toFixed(0)}M CAD`;
-  return `$${amount.toLocaleString()} CAD`;
 }
