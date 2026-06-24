@@ -77,6 +77,36 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
         </div>
       </div>
 
+      {(project.developmentStage || project.operationGroup || project.impactAssessmentUrl) && (
+        <div className="detail-intelligence">
+          {project.developmentStage && (
+            <div className="detail-item">
+              <span className="detail-label">NRCan Development Stage</span>
+              <span className="detail-value">{project.developmentStage}</span>
+            </div>
+          )}
+          {project.operationGroup && (
+            <div className="detail-item">
+              <span className="detail-label">Operation Group</span>
+              <span className="detail-value">{project.operationGroup}</span>
+            </div>
+          )}
+          {project.impactAssessmentUrl && (
+            <div className="detail-item">
+              <span className="detail-label">Impact Assessment</span>
+              <a
+                href={project.impactAssessmentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="detail-value detail-link-inline"
+              >
+                IAAC Registry →
+              </a>
+            </div>
+          )}
+        </div>
+      )}
+
       <ShareButton project={project} />
 
       {project.website && (

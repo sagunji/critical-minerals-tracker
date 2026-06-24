@@ -15,7 +15,9 @@
     "province": "Ontario",
     "website": "https://www.zentek.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 116)",
-    "nrcanObjectId": 116
+    "nrcanObjectId": 116,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "battery-materials-park",
@@ -35,7 +37,9 @@
     "province": "Ontario",
     "website": "https://electrabmc.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 148)",
-    "nrcanObjectId": 148
+    "nrcanObjectId": 148,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "bissett-creek",
@@ -53,7 +57,9 @@
     "province": "Ontario",
     "website": "http://northerngraphite.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 104)",
-    "nrcanObjectId": 104
+    "nrcanObjectId": 104,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "blind-river",
@@ -71,7 +77,9 @@
     "province": "Ontario",
     "website": "https://www.cameco.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 146)",
-    "nrcanObjectId": 146
+    "nrcanObjectId": 146,
+    "operationGroup": "Processing",
+    "developmentStage": "Refinery"
   },
   {
     "id": "coleman",
@@ -96,7 +104,9 @@
     "province": "Ontario",
     "website": "https://vale.com/canada",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 133)",
-    "nrcanObjectId": 133
+    "nrcanObjectId": 133,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "copper-cliff-complex",
@@ -121,7 +131,9 @@
     "province": "Ontario",
     "website": "https://vale.com/canada",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 131)",
-    "nrcanObjectId": 131
+    "nrcanObjectId": 131,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "crawford",
@@ -144,7 +156,10 @@
     "province": "Ontario",
     "website": "https://canadanickel.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 111)",
-    "nrcanObjectId": 111
+    "nrcanObjectId": 111,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project",
+    "impactAssessmentUrl": "https://iaac-aeic.gc.ca/050/evaluations/proj/83857"
   },
   {
     "id": "crean-hill",
@@ -167,7 +182,9 @@
     "province": "Ontario",
     "website": "https://magnamining.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 110)",
-    "nrcanObjectId": 110
+    "nrcanObjectId": 110,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "creighton",
@@ -192,7 +209,9 @@
     "province": "Ontario",
     "website": "https://vale.com/canada",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 132)",
-    "nrcanObjectId": 132
+    "nrcanObjectId": 132,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "eagles-nest",
@@ -214,7 +233,10 @@
     "province": "Ontario",
     "website": "https://wyloo.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 117)",
-    "nrcanObjectId": 117
+    "nrcanObjectId": 117,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project",
+    "impactAssessmentUrl": "https://iaac-aeic.gc.ca/050/evaluations/proj/63925"
   },
   {
     "id": "fraser",
@@ -237,7 +259,9 @@
     "province": "Ontario",
     "website": "https://www.glencore.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 134)",
-    "nrcanObjectId": 134
+    "nrcanObjectId": 134,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "garson",
@@ -262,7 +286,9 @@
     "province": "Ontario",
     "website": "https://vale.com/canada",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 129)",
-    "nrcanObjectId": 129
+    "nrcanObjectId": 129,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "georgia-lake",
@@ -280,7 +306,9 @@
     "province": "Ontario",
     "website": "https://rocktechlithium.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 120)",
-    "nrcanObjectId": 120
+    "nrcanObjectId": 120,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "james-bay-argor",
@@ -298,7 +326,9 @@
     "province": "Ontario",
     "website": "https://niobaymetals.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 108)",
-    "nrcanObjectId": 108
+    "nrcanObjectId": 108,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "kearney",
@@ -316,7 +346,9 @@
     "province": "Ontario",
     "website": "https://www.gsixenergy.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 105)",
-    "nrcanObjectId": 105
+    "nrcanObjectId": 105,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Past producer"
   },
   {
     "id": "kenbridge",
@@ -336,7 +368,9 @@
     "province": "Ontario",
     "website": "http://www.tartisannickel.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 126)",
-    "nrcanObjectId": 126
+    "nrcanObjectId": 126,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "kidd-creek",
@@ -358,7 +392,9 @@
     "province": "Ontario",
     "website": "https://www.glencore.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 135)",
-    "nrcanObjectId": 135
+    "nrcanObjectId": 135,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "lac-des-iles",
@@ -380,7 +416,9 @@
     "province": "Ontario",
     "website": "https://impalacanada.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 138)",
-    "nrcanObjectId": 138
+    "nrcanObjectId": 138,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "lake-superior-plant",
@@ -398,7 +436,9 @@
     "province": "Ontario",
     "website": "https://www.avalonadvancedmaterials.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 153)",
-    "nrcanObjectId": 153
+    "nrcanObjectId": 153,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "lithium-hydroxide-refinery",
@@ -416,7 +456,9 @@
     "province": "Ontario",
     "website": "https://rocktechlithium.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 152)",
-    "nrcanObjectId": 152
+    "nrcanObjectId": 152,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "lithium-refinery",
@@ -435,7 +477,9 @@
     "province": "Ontario",
     "website": "https://www.frontierlithium.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 151)",
-    "nrcanObjectId": 151
+    "nrcanObjectId": 151,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "marathon",
@@ -457,7 +501,10 @@
     "province": "Ontario",
     "website": "https://genmining.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 118)",
-    "nrcanObjectId": 118
+    "nrcanObjectId": 118,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project",
+    "impactAssessmentUrl": "https://iaac-aeic.gc.ca/050/evaluations/proj/54755"
   },
   {
     "id": "martison",
@@ -476,7 +523,9 @@
     "province": "Ontario",
     "website": "http://fox-river.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 115)",
-    "nrcanObjectId": 115
+    "nrcanObjectId": 115,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "mccreedy-west",
@@ -500,7 +549,9 @@
     "province": "Ontario",
     "website": "https://magnamining.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 136)",
-    "nrcanObjectId": 136
+    "nrcanObjectId": 136,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "mississauga",
@@ -518,7 +569,9 @@
     "province": "Ontario",
     "website": "https://www.realalloy.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 143)",
-    "nrcanObjectId": 143
+    "nrcanObjectId": 143,
+    "operationGroup": "Processing",
+    "developmentStage": "Secondary smelter"
   },
   {
     "id": "neo-performance-materials-ulc",
@@ -537,7 +590,9 @@
     "province": "Ontario",
     "website": "https://www.neomaterials.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 141)",
-    "nrcanObjectId": 141
+    "nrcanObjectId": 141,
+    "operationGroup": "Processing",
+    "developmentStage": "Secondary refinery"
   },
   {
     "id": "nickel-rim-south",
@@ -559,7 +614,9 @@
     "province": "Ontario",
     "website": "https://www.glencore.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 128)",
-    "nrcanObjectId": 128
+    "nrcanObjectId": 128,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Past producer"
   },
   {
     "id": "nickel-processing-plant",
@@ -577,7 +634,9 @@
     "province": "Ontario",
     "website": "https://canadanickel.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 149)",
-    "nrcanObjectId": 149
+    "nrcanObjectId": 149,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "onaping-depth",
@@ -602,7 +661,9 @@
     "province": "Ontario",
     "website": "https://www.glencore.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 113)",
-    "nrcanObjectId": 113
+    "nrcanObjectId": 113,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "ottawa-plant",
@@ -621,7 +682,9 @@
     "province": "Ontario",
     "website": "http://www.masterloy.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 139)",
-    "nrcanObjectId": 139
+    "nrcanObjectId": 139,
+    "operationGroup": "Processing",
+    "developmentStage": "Ferroalloy plant"
   },
   {
     "id": "pakeagama-lake",
@@ -644,7 +707,9 @@
     "province": "Ontario",
     "website": "https://www.frontierlithium.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 125)",
-    "nrcanObjectId": 125
+    "nrcanObjectId": 125,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "port-colborne",
@@ -663,7 +728,9 @@
     "province": "Ontario",
     "website": "https://vale.com/canada",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 142)",
-    "nrcanObjectId": 142
+    "nrcanObjectId": 142,
+    "operationGroup": "Processing",
+    "developmentStage": "Refinery"
   },
   {
     "id": "port-hope",
@@ -684,7 +751,9 @@
     "province": "Ontario",
     "website": "https://www.cameco.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 140)",
-    "nrcanObjectId": 140
+    "nrcanObjectId": 140,
+    "operationGroup": "Processing",
+    "developmentStage": "Conversion facility"
   },
   {
     "id": "raleigh",
@@ -703,7 +772,9 @@
     "province": "Ontario",
     "website": "https://www.internationallithium.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 124)",
-    "nrcanObjectId": 124
+    "nrcanObjectId": 124,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "rapidsx-demonstration-plant",
@@ -721,7 +792,9 @@
     "province": "Ontario",
     "website": "https://ucore.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 147)",
-    "nrcanObjectId": 147
+    "nrcanObjectId": 147,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "river-valley",
@@ -745,7 +818,9 @@
     "province": "Ontario",
     "website": "https://newagemetals.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 107)",
-    "nrcanObjectId": 107
+    "nrcanObjectId": 107,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "separation-rapids",
@@ -764,7 +839,9 @@
     "province": "Ontario",
     "website": "https://www.avalonadvancedmaterials.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 127)",
-    "nrcanObjectId": 127
+    "nrcanObjectId": 127,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "seymour-lake-root-lake",
@@ -783,7 +860,9 @@
     "province": "Ontario",
     "website": "https://www.greentm.com.au/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 121)",
-    "nrcanObjectId": 121
+    "nrcanObjectId": 121,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced Project"
   },
   {
     "id": "shakespeare",
@@ -806,7 +885,9 @@
     "province": "Ontario",
     "website": "https://magnamining.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 114)",
-    "nrcanObjectId": 114
+    "nrcanObjectId": 114,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "shaw-dome",
@@ -831,7 +912,9 @@
     "province": "Ontario",
     "website": "https://www.evnickel.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 109)",
-    "nrcanObjectId": 109
+    "nrcanObjectId": 109,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "stainless-steel-and-alloy-processing-facility",
@@ -851,7 +934,9 @@
     "province": "Ontario",
     "website": "https://canadanickel.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 150)",
-    "nrcanObjectId": 150
+    "nrcanObjectId": 150,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "stobie",
@@ -876,7 +961,9 @@
     "province": "Ontario",
     "website": "https://vale.com/canada",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 130)",
-    "nrcanObjectId": 130
+    "nrcanObjectId": 130,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "sudbury",
@@ -897,7 +984,9 @@
     "province": "Ontario",
     "website": "https://www.glencore.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 144)",
-    "nrcanObjectId": 144
+    "nrcanObjectId": 144,
+    "operationGroup": "Processing",
+    "developmentStage": "Smelter, plant"
   },
   {
     "id": "superior-lake",
@@ -918,7 +1007,9 @@
     "province": "Ontario",
     "website": "https://frontierhe.com/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 119)",
-    "nrcanObjectId": 119
+    "nrcanObjectId": 119,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "thierry",
@@ -941,7 +1032,9 @@
     "province": "Ontario",
     "website": "https://xxix.ca/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 123)",
-    "nrcanObjectId": 123
+    "nrcanObjectId": 123,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "thunder-bay-north",
@@ -964,7 +1057,9 @@
     "province": "Ontario",
     "website": "https://www.cleanairmetals.ca",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 122)",
-    "nrcanObjectId": 122
+    "nrcanObjectId": 122,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   },
   {
     "id": "thunder-bay-plant",
@@ -982,7 +1077,9 @@
     "province": "Ontario",
     "website": "https://www.greentm.com.au/",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 154)",
-    "nrcanObjectId": 154
+    "nrcanObjectId": 154,
+    "operationGroup": "Advanced processing project",
+    "developmentStage": "Advanced processing project"
   },
   {
     "id": "totten",
@@ -1005,7 +1102,9 @@
     "province": "Ontario",
     "website": "https://vale.com/canada",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 137)",
-    "nrcanObjectId": 137
+    "nrcanObjectId": 137,
+    "operationGroup": "Mines and other primary producing sites",
+    "developmentStage": "Mine"
   },
   {
     "id": "upper-beaver",
@@ -1024,7 +1123,10 @@
     "province": "Ontario",
     "website": "https://www.agnicoeagle.com",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 106)",
-    "nrcanObjectId": 106
+    "nrcanObjectId": 106,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project",
+    "impactAssessmentUrl": "https://iaac-aeic.gc.ca/050/evaluations/proj/82960"
   },
   {
     "id": "victoria",
@@ -1047,6 +1149,8 @@
     "province": "Ontario",
     "website": "https://kghm.com/en",
     "source": "NRCan Critical Minerals Inventory (OBJECTID: 112)",
-    "nrcanObjectId": 112
+    "nrcanObjectId": 112,
+    "operationGroup": "Advanced exploration project",
+    "developmentStage": "Advanced project"
   }
 ]

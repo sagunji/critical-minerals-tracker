@@ -20,6 +20,9 @@ export interface MineralProject {
   website: string | null;
   source: string;
   nrcanObjectId: number | null;
+  operationGroup?: string;
+  developmentStage?: string;
+  impactAssessmentUrl?: string;
   funding?: FundingRecord[];
 }
 

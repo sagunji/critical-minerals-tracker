@@ -1,6 +1,7 @@
 {
-  "last_sync": "2026-06-24T02:49:05.445031+00:00",
-  "last_hash": "2a8e82462ff4",
+  "last_sync": "2026-06-24T03:58:46.432817+00:00",
+  "last_hash": "808294953a57",
+  "data_changed": true,
   "total_projects": 50,
   "source_api": "https://maps-cartes.services.geo.ca/server_serveur/rest/services/NRCan/critical_minerals_en/MapServer",
   "source_name": "Natural Resources Canada \u2014 Critical Minerals Projects Database",
@@ -27,5 +28,9 @@
     "Copper": 4,
     "Cobalt": 1,
     "Rare Earths": 1
-  }
+  },
+  "history_snapshots": [
+    "2026-06-24"
+  ],
+  "total_snapshots": 1
 }

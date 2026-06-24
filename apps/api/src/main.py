@@ -1,13 +1,14 @@
 import json
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from .routes import projects, stats
 from .services.data_loader import reload_data
 
 DATA_DIR = Path(__file__).parent / "data"
+HISTORY_DIR = DATA_DIR / "history"
 
 app = FastAPI(
     title="Critical Minerals Tracker API",
@@ -48,6 +49,33 @@ async def sources():
             result["cmif"] = json.load(f)
 
     return result
+
+
+@app.get("/api/history")
+async def history(date: str = Query(None, description="Specific date (YYYY-MM-DD) to retrieve")):
+    """List available historical snapshots, or retrieve a specific one."""
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+
+    if date:
+        path = HISTORY_DIR / f"minerals_{date}.json"
+        if not path.exists():
+            return {"error": f"No snapshot for {date}"}
+        with open(path) as f:
+            return {"date": date, "projects": json.load(f)}
+
+    snapshots = sorted(HISTORY_DIR.glob("minerals_*.json"))
+    entries = []
+    for snap in snapshots:
+        date_str = snap.stem.replace("minerals_", "")
+        entries.append({
+            "date": date_str,
+            "size_bytes": snap.stat().st_size,
+        })
+
+    return {
+        "total_snapshots": len(entries),
+        "snapshots": entries,
+    }
 
 
 @app.post("/api/reload")

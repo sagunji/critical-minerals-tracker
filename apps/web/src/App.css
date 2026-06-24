@@ -465,6 +465,26 @@ body {
   color: var(--text-primary);
 }
 
+.detail-intelligence {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-link-inline {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.detail-link-inline:hover {
+  text-decoration: underline;
+}
+
 .detail-minerals {
   margin-bottom: 16px;
 }

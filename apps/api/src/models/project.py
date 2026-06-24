@@ -24,6 +24,9 @@ class MineralProject(BaseModel):
     website: Optional[str] = None
     source: str
     nrcanObjectId: Optional[int] = None
+    operationGroup: Optional[str] = None
+    developmentStage: Optional[str] = None
+    impactAssessmentUrl: Optional[str] = None
     funding: Optional[list[FundingRecord]] = None
 
 

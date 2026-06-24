@@ -25,6 +25,7 @@ DATASET_SLUG = "critical-minerals-innovation-fund-recipients"
 CKAN_API_URL = f"https://data.ontario.ca/api/3/action/package_show?id={DATASET_SLUG}"
 
 DATA_DIR = Path(__file__).parent.parent / "src" / "data"
+HISTORY_DIR = DATA_DIR / "history"
 OUTPUT_FILE = DATA_DIR / "funding.json"
 METADATA_FILE = DATA_DIR / "funding_metadata.json"
 
@@ -208,6 +209,14 @@ def main():
     with open(OUTPUT_FILE, "w") as f:
         json.dump(records, f, indent=2)
     print(f"Written: {OUTPUT_FILE.name}")
+
+    # Archive historical snapshot
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+    archive_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    history_path = HISTORY_DIR / f"funding_{archive_date}.json"
+    with open(history_path, "w") as f:
+        json.dump(records, f, indent=2)
+    print(f"Historical archive: {history_path.name}")
 
     # Step 5: Write metadata
     metadata["total_records"] = len(records)

@@ -32,6 +32,7 @@ LAYERS = {
 
 DATA_DIR = Path(__file__).parent.parent / "src" / "data"
 RAW_DIR = DATA_DIR / "raw"
+HISTORY_DIR = DATA_DIR / "history"
 OUTPUT_FILE = DATA_DIR / "minerals.json"
 SYNC_LOG_FILE = DATA_DIR / "sync_log.json"
 
@@ -134,7 +135,12 @@ def transform_feature(feature: dict, stage: str) -> dict:
     website = attrs.get("Website") or None
     object_id = attrs.get("OBJECTID")
 
-    return {
+    operation_group = (attrs.get("OperationGroupEN") or "").strip() or None
+    development_stage = (attrs.get("DevelopmentStageEN") or "").strip() or None
+    ciar = (attrs.get("CIAR") or "").strip()
+    impact_assessment_url = ciar if ciar and ciar != "N/A" else None
+
+    project = {
         "id": slugify(name),
         "name": name,
         "operator": operator,
@@ -150,6 +156,15 @@ def transform_feature(feature: dict, stage: str) -> dict:
         "source": f"NRCan Critical Minerals Inventory (OBJECTID: {object_id})",
         "nrcanObjectId": object_id,
     }
+
+    if operation_group:
+        project["operationGroup"] = operation_group
+    if development_stage:
+        project["developmentStage"] = development_stage
+    if impact_assessment_url:
+        project["impactAssessmentUrl"] = impact_assessment_url
+
+    return project
 
 
 def deduplicate(projects: list[dict]) -> list[dict]:
@@ -188,14 +203,6 @@ def main():
 
     print(f"\nTotal unique Ontario projects: {len(all_projects)}")
 
-    # Save raw snapshot
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    raw_path = RAW_DIR / f"nrcan_sync_{timestamp}.json"
-    with open(raw_path, "w") as f:
-        json.dump(all_projects, f, indent=2)
-    print(f"Raw snapshot saved: {raw_path.name}")
-
     # Check for changes
     content_hash = compute_hash(all_projects)
     log_path = SYNC_LOG_FILE
@@ -205,27 +212,51 @@ def main():
             log = json.load(f)
             prev_hash = log.get("last_hash")
 
-    if prev_hash == content_hash:
+    changed = prev_hash != content_hash
+    if not changed:
         print("No changes detected since last sync.")
     else:
         print(f"Changes detected (hash: {content_hash})")
 
-    # Write output
+    # Write current output (always, so enriched fields are picked up)
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_FILE, "w") as f:
         json.dump(all_projects, f, indent=2)
     print(f"Written: {OUTPUT_FILE.name} ({len(all_projects)} projects)")
+
+    # Archive historical snapshot (irreplaceable time-series data)
+    HISTORY_DIR.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    history_path = HISTORY_DIR / f"minerals_{timestamp}.json"
+    with open(history_path, "w") as f:
+        json.dump(all_projects, f, indent=2)
+    print(f"Historical archive: {history_path.name}")
+
+    # Save raw API response snapshot
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
+    raw_path = RAW_DIR / f"nrcan_sync_{timestamp}.json"
+    with open(raw_path, "w") as f:
+        json.dump(all_projects, f, indent=2)
+    print(f"Raw snapshot: {raw_path.name}")
 
     # Count by stage/mineral for metadata
     from collections import Counter
     stage_counts = dict(Counter(p["stage"] for p in all_projects))
     mineral_counts = dict(Counter(p["primaryMineral"] for p in all_projects))
 
+    # Build history index from archived files
+    history_files = sorted(HISTORY_DIR.glob("minerals_*.json"))
+    history_entries = []
+    for hf in history_files:
+        date_str = hf.stem.replace("minerals_", "")
+        history_entries.append(date_str)
+
     # Update sync log with full metadata
     with open(log_path, "w") as f:
         json.dump({
             "last_sync": datetime.now(timezone.utc).isoformat(),
             "last_hash": content_hash,
+            "data_changed": changed,
             "total_projects": len(all_projects),
             "source_api": BASE_URL,
             "source_name": "Natural Resources Canada — Critical Minerals Projects Database",
@@ -235,6 +266,8 @@ def main():
             "layers_queried": {str(k): v for k, v in LAYERS.items()},
             "by_stage": stage_counts,
             "by_mineral": mineral_counts,
+            "history_snapshots": history_entries,
+            "total_snapshots": len(history_entries),
         }, f, indent=2)
 
     print("\nDone.")
