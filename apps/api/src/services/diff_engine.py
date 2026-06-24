@@ -164,9 +164,26 @@ def diff_snapshots(old_date: str, new_date: str) -> list[Change]:
     return changes
 
 
-def generate_changelog_entry(old_date: str, new_date: str) -> dict:
-    """Generate a complete changelog entry for a date range."""
+SCOPE_EXPANSION_THRESHOLD = 0.20  # If >20% of new snapshot appears as "new", it's a scope change
+
+
+def generate_changelog_entry(old_date: str, new_date: str) -> dict | None:
+    """Generate a complete changelog entry for a date range.
+
+    Returns None if the diff looks like a scope expansion rather than
+    genuine incremental changes (e.g. expanding from Ontario to Canada).
+    """
+    new_data = _load_snapshot(new_date)
     changes = diff_snapshots(old_date, new_date)
+
+    if not changes:
+        return None
+
+    new_project_count = sum(1 for c in changes if c.type == ChangeType.NEW_PROJECT)
+    if new_data and new_project_count > len(new_data) * SCOPE_EXPANSION_THRESHOLD:
+        changes = [c for c in changes if c.type != ChangeType.NEW_PROJECT]
+        if not changes:
+            return None
 
     return {
         "from_date": old_date,
@@ -194,9 +211,15 @@ def load_changelog() -> list[dict]:
         return json.load(f)
 
 
-def append_changelog(entry: dict) -> None:
-    """Append a new entry to the changelog file."""
+def append_changelog(entry: dict | None) -> None:
+    """Append a new entry to the changelog file. Skips if entry is None."""
+    if entry is None:
+        return
     changelog = load_changelog()
+    # Prevent duplicate entries for the same date range
+    for existing in changelog:
+        if existing["from_date"] == entry["from_date"] and existing["to_date"] == entry["to_date"]:
+            return
     changelog.append(entry)
     with open(CHANGELOG_FILE, "w") as f:
         json.dump(changelog, f, indent=2)
@@ -211,7 +234,7 @@ def rebuild_changelog() -> list[dict]:
     changelog = []
     for i in range(1, len(dates)):
         entry = generate_changelog_entry(dates[i - 1], dates[i])
-        if entry["total_changes"] > 0:
+        if entry and entry["total_changes"] > 0:
             changelog.append(entry)
 
     with open(CHANGELOG_FILE, "w") as f:
