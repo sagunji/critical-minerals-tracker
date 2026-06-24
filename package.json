@@ -10,7 +10,10 @@
     "test:api": "cd apps/api && uv run pytest",
     "sync": "cd apps/api && uv run python scripts/sync_all.py",
     "sync:nrcan": "cd apps/api && uv run python scripts/sync_nrcan.py",
-    "sync:cmif": "cd apps/api && uv run python scripts/sync_cmif.py"
+    "sync:cmif": "cd apps/api && uv run python scripts/sync_cmif.py",
+    "deploy": "pnpm deploy:api && pnpm deploy:web",
+    "deploy:api": "cd apps/api && flyctl deploy --remote-only",
+    "deploy:web": "VITE_API_URL=https://critical-minerals-api.fly.dev pnpm build:web && wrangler pages deploy apps/web/dist --project-name=critical-minerals-tracker"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
