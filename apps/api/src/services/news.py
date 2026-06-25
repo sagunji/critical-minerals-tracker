@@ -8,6 +8,7 @@ Results are cached in memory for 6 hours to avoid hammering Google.
 import re
 import time
 import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from html import unescape
 from urllib.parse import quote_plus
 from urllib.request import urlopen, Request
@@ -91,6 +92,18 @@ def fetch_news(operator: str, project_name: str | None = None, limit: int = 5) -
         return _CACHE.get(cache_key, (0, []))[1][:limit]
 
     articles = _parse_rss(xml_bytes)
+    articles.sort(key=_parse_pub_date, reverse=True)
     _CACHE[cache_key] = (now, articles)
 
     return articles[:limit]
+
+
+def _parse_pub_date(article: dict) -> float:
+    """Parse RFC 2822 date string to a timestamp for sorting. Returns 0 on failure."""
+    pub = article.get("published")
+    if not pub:
+        return 0
+    try:
+        return parsedate_to_datetime(pub).timestamp()
+    except Exception:
+        return 0
