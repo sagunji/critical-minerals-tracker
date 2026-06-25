@@ -6,14 +6,11 @@ interface Props {
   onProjectClick: (projectId: string) => void;
 }
 
-type TabId = "all" | "new_project" | "status_change" | "stage_change" | "other";
+type TabId = "new" | "all";
 
 const TABS: { id: TabId; label: string }[] = [
+  { id: "new", label: "New" },
   { id: "all", label: "All" },
-  { id: "new_project", label: "New Projects" },
-  { id: "stage_change", label: "Stage Changes" },
-  { id: "status_change", label: "Status Changes" },
-  { id: "other", label: "Other" },
 ];
 
 const CHANGE_ICONS: Record<string, string> = {
@@ -47,23 +44,20 @@ interface GroupedChanges {
   changes: (ChangeEntry & { entryDate: string })[];
 }
 
-function significanceClass(significance: string): string {
+function significanceColor(significance: string): string {
   switch (significance) {
     case "high":
-      return "border-l-2 border-accent";
+      return "bg-accent";
     case "medium":
-      return "border-l-2 border-gray-400";
+      return "bg-gray-400";
     default:
-      return "border-l-2 border-border";
+      return "bg-border";
   }
 }
 
 function filterChanges(changes: (ChangeEntry & { entryDate: string })[], tabId: TabId) {
   if (tabId === "all") return changes;
-  if (tabId === "other") {
-    return changes.filter((c) => !["new_project", "stage_change", "status_change"].includes(c.type));
-  }
-  return changes.filter((c) => c.type === tabId);
+  return changes.filter((c) => c.type === "new_project");
 }
 
 function groupChanges(changes: (ChangeEntry & { entryDate: string })[]): GroupedChanges[] {
@@ -109,19 +103,20 @@ function ChangeList({
     <>
       {groupChanges(changes).map((group) => (
         <div key={group.label}>
-          <div className="text-[10px] uppercase tracking-wider text-text-muted font-semibold px-2 py-1.5 sticky top-0 bg-bg-card">
+          <div className="text-[10px] uppercase tracking-wider text-text-muted font-medium px-3 py-1.5 sticky top-0 bg-bg-card/95 backdrop-blur-sm">
             {group.label}
           </div>
           {group.changes.map((change, i) => (
             <div
               key={i}
-              className={`flex items-start gap-2 px-3 py-2 rounded-md cursor-pointer hover:bg-bg-muted ${significanceClass(change.significance)}`}
+              className="flex items-start gap-2.5 px-3 py-2 cursor-pointer hover:bg-bg-muted rounded-r-md"
               onClick={() => onProjectClick(change.project_id)}
             >
-              <span className="text-xs mt-0.5">{CHANGE_ICONS[change.type] || "•"}</span>
-              <div className="flex flex-col min-w-0">
-                <span className="text-xs font-semibold text-text">{change.project_name}</span>
-                <span className="text-[11px] text-text-muted truncate max-w-[320px]">
+              <div className={`w-0.5 self-stretch rounded-full flex-shrink-0 ${significanceColor(change.significance)}`} />
+              <span className="text-xs mt-0.5 text-text-muted">{CHANGE_ICONS[change.type] || "•"}</span>
+              <div className="flex flex-col min-w-0 gap-0.5">
+                <span className="text-[13px] font-medium text-text">{change.project_name}</span>
+                <span className="text-[11px] text-text-muted leading-tight">
                   {change.description}
                 </span>
               </div>
@@ -141,18 +136,18 @@ export default function NewsPopover({ onProjectClick }: Props) {
   );
 
   return (
-    <div className="w-[420px] max-h-[520px] flex flex-col">
-      <div className="flex items-center justify-between px-4 pt-4 pb-2">
-        <h3 className="font-display text-base font-semibold">What&apos;s New</h3>
+    <div className="w-[380px] max-h-[480px] flex flex-col">
+      <div className="px-4 pt-3 pb-1">
+        <h3 className="font-display text-sm font-semibold">What&apos;s New</h3>
       </div>
 
-      <Tabs.Root defaultValue="all" className="flex flex-col flex-1 min-h-0">
-        <Tabs.List className="flex gap-1 px-4 pb-2 overflow-x-auto">
+      <Tabs.Root defaultValue="new" className="flex flex-col flex-1 min-h-0">
+        <Tabs.List className="flex gap-0.5 px-4 pb-2 border-b border-border">
           {TABS.map((tab) => (
             <Tabs.Trigger
               key={tab.id}
               value={tab.id}
-              className="px-2.5 py-1 text-[11px] font-medium rounded-sm text-text-muted data-[state=active]:bg-accent data-[state=active]:text-white"
+              className="px-2 py-1 text-[11px] font-medium rounded-sm text-text-muted transition-colors data-[state=active]:bg-accent data-[state=active]:text-white"
             >
               {tab.label}
             </Tabs.Trigger>
