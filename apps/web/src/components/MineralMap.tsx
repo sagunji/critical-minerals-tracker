@@ -29,6 +29,15 @@ function createPinIcon(color: string) {
   });
 }
 
+function InvalidateOnResize({ selectedProject }: { selectedProject: MineralProject | null }) {
+  const map = useMap();
+  useEffect(() => {
+    const timer = setTimeout(() => map.invalidateSize(), 300);
+    return () => clearTimeout(timer);
+  }, [selectedProject, map]);
+  return null;
+}
+
 function FlyToProject({ project }: { project: MineralProject | null }) {
   const map = useMap();
   useEffect(() => {
@@ -60,6 +69,7 @@ export default function MineralMap({ projects, selectedProject, onSelectProject,
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
       />
+      <InvalidateOnResize selectedProject={selectedProject} />
       <FlyToProject project={selectedProject} />
       {projects.map((project) => {
         const isSelected = selectedProject?.id === project.id;

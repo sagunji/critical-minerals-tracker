@@ -2,6 +2,7 @@ import type { MineralProject } from "../types";
 import { getMineralColor } from "../types";
 import FundingBadge from "./FundingBadge";
 import ShareButton from "./ShareButton";
+import ProjectNews from "./ProjectNews";
 
 interface ProjectDetailProps {
   project: MineralProject;
@@ -160,9 +161,20 @@ export default function ProjectDetail({ project, onClose, isInCompare, onToggleC
         </a>
       )}
 
+      <div className="pt-3 border-t border-border">
+        <ProjectNews key={project.id} operator={project.operator} projectName={project.name} />
+      </div>
+
       <div className="pt-3 border-t border-border space-y-1">
         <span className="text-[10px] uppercase tracking-wide text-text-muted">Data Source</span>
-        <span className="text-[11px] text-text-muted">{project.source}</span>
+        <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
+          <span>NRCan Critical Minerals Inventory</span>
+          {project.nrcanObjectId && (
+            <span className="px-1.5 py-0.5 bg-bg-muted rounded text-[10px]">
+              ID {project.nrcanObjectId}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

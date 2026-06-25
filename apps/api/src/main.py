@@ -33,6 +33,19 @@ async def health():
     return {"status": "ok", "version": "0.1.0"}
 
 
+@app.get("/api/news")
+async def news(
+    operator: str = Query(..., description="Operator/company name"),
+    project: str = Query(None, description="Project name (optional, improves relevance)"),
+    limit: int = Query(5, description="Max articles to return"),
+):
+    """Fetch recent news articles for an operator from Google News RSS (cached 6h)."""
+    from .services.news import fetch_news
+
+    articles = fetch_news(operator, project_name=project, limit=limit)
+    return {"operator": operator, "count": len(articles), "articles": articles}
+
+
 @app.get("/api/prices")
 async def prices():
     """Return current commodity spot prices for metals relevant to critical minerals."""
