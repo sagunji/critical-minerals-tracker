@@ -1,16 +1,22 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import MineralMap from "./components/MineralMap";
 import FilterPanel from "./components/FilterPanel";
 import ProjectDetail from "./components/ProjectDetail";
 import StatsBubble from "./components/StatsBubble";
 import NewsPopover from "./components/NewsPopover";
+import ComparePanel from "./components/ComparePanel";
+import PriceTicker from "./components/PriceTicker";
 import { Popover, PopoverTrigger, PopoverContent } from "./components/ui/popover";
 
 import { useData } from "./hooks/useData";
+import { usePrices } from "./hooks/usePrices";
 import type { MineralProject } from "./types";
+
+const MAX_COMPARE = 4;
 
 function App() {
   const { projects, loading, error } = useData();
+  const { data: priceData } = usePrices();
   const [selectedProject, setSelectedProject] = useState<MineralProject | null>(null);
   const [selectedMinerals, setSelectedMinerals] = useState<string[]>([]);
   const [selectedStage, setSelectedStage] = useState("All Stages");
@@ -20,10 +26,23 @@ function App() {
   const [showFundedOnly, setShowFundedOnly] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [newsOpen, setNewsOpen] = useState(false);
+  const [compareIds, setCompareIds] = useState<string[]>([]);
+  const [compareOpen, setCompareOpen] = useState(false);
 
   useEffect(() => {
     if (projects.length === 0) return;
     const params = new URLSearchParams(window.location.search);
+
+    const compareParam = params.get("compare");
+    if (compareParam) {
+      const ids = compareParam.split(",").filter((id) => projects.some((p) => p.id === id));
+      if (ids.length >= 2) {
+        setCompareIds(ids.slice(0, MAX_COMPARE));
+        setCompareOpen(true);
+        return;
+      }
+    }
+
     const projectId = params.get("project");
     if (projectId) {
       const found = projects.find((p) => p.id === projectId);
@@ -32,16 +51,32 @@ function App() {
   }, [projects]);
 
   useEffect(() => {
-    if (selectedProject) {
-      const url = new URL(window.location.href);
-      url.searchParams.set("project", selectedProject.id);
-      window.history.replaceState({}, "", url.toString());
-    } else {
-      const url = new URL(window.location.href);
+    const url = new URL(window.location.href);
+    if (compareOpen && compareIds.length >= 2) {
       url.searchParams.delete("project");
-      window.history.replaceState({}, "", url.toString());
+      url.searchParams.set("compare", compareIds.join(","));
+    } else if (selectedProject) {
+      url.searchParams.delete("compare");
+      url.searchParams.set("project", selectedProject.id);
+    } else {
+      url.searchParams.delete("project");
+      url.searchParams.delete("compare");
     }
-  }, [selectedProject]);
+    window.history.replaceState({}, "", url.toString());
+  }, [selectedProject, compareIds, compareOpen]);
+
+  const compareProjects = useMemo(
+    () => compareIds.map((id) => projects.find((p) => p.id === id)).filter(Boolean) as MineralProject[],
+    [compareIds, projects]
+  );
+
+  const toggleCompare = useCallback((projectId: string) => {
+    setCompareIds((prev) => {
+      if (prev.includes(projectId)) return prev.filter((id) => id !== projectId);
+      if (prev.length >= MAX_COMPARE) return prev;
+      return [...prev, projectId];
+    });
+  }, []);
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
@@ -185,8 +220,23 @@ function App() {
             projects={filteredProjects}
             selectedProject={selectedProject}
             onSelectProject={setSelectedProject}
+            compareIds={compareIds}
+            onToggleCompare={toggleCompare}
           />
           <StatsBubble projects={filteredProjects} />
+          {priceData && <PriceTicker data={priceData} />}
+
+          {compareIds.length > 0 && (
+            <button
+              onClick={() => setCompareOpen(true)}
+              className="absolute bottom-4 right-4 z-[500] flex items-center gap-2 px-4 py-2 bg-accent text-white text-sm font-medium rounded-lg shadow-lg hover:bg-accent-hover transition-colors"
+            >
+              Compare
+              <span className="flex items-center justify-center w-5 h-5 bg-white/20 rounded-full text-xs font-bold">
+                {compareIds.length}
+              </span>
+            </button>
+          )}
         </section>
 
         {selectedProject && (
@@ -194,10 +244,30 @@ function App() {
             <ProjectDetail
               project={selectedProject}
               onClose={() => setSelectedProject(null)}
+              isInCompare={compareIds.includes(selectedProject.id)}
+              onToggleCompare={() => toggleCompare(selectedProject.id)}
+              compareCount={compareIds.length}
+              maxCompare={MAX_COMPARE}
             />
           </aside>
         )}
       </main>
+
+      {compareOpen && compareProjects.length >= 2 && (
+        <ComparePanel
+          projects={compareProjects}
+          onRemove={(id) => {
+            const next = compareIds.filter((cid) => cid !== id);
+            setCompareIds(next);
+            if (next.length < 2) setCompareOpen(false);
+          }}
+          onClose={() => setCompareOpen(false)}
+          onSelectProject={(p) => {
+            setSelectedProject(p);
+            setCompareOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 }

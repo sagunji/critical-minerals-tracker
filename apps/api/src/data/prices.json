@@ -1,0 +1,90 @@
+{
+  "metadata": {
+    "source": "Rzzro API (rzzro.com) \u2014 CC BY 4.0",
+    "fx_source": "Bank of Canada Valet API",
+    "usd_cad_rate": 1.4234,
+    "last_updated": "2026-06-25T02:50:24.581847+00:00",
+    "metals_count": 4,
+    "note": "Spot prices from LME/COMEX/NYMEX. Not all critical minerals have standardized spot prices."
+  },
+  "prices": {
+    "copper": {
+      "display_name": "Copper",
+      "symbol": "CU",
+      "tracker_mineral": "Copper",
+      "price_usd": 14200,
+      "price_cad": 20212.28,
+      "unit": "per metric ton",
+      "unit_usd": "per metric ton",
+      "exchange": "LME 3M",
+      "change_pct": 0.47,
+      "price_timestamp": "2026-05-22T10:00:00Z"
+    },
+    "nickel": {
+      "display_name": "Nickel",
+      "symbol": "NI",
+      "tracker_mineral": "Nickel",
+      "price_usd": 19500,
+      "price_cad": 27756.3,
+      "unit": "per metric ton",
+      "unit_usd": "per metric ton",
+      "exchange": "LME 3M",
+      "change_pct": -0.32,
+      "price_timestamp": "2026-05-22T10:00:00Z"
+    },
+    "zinc": {
+      "display_name": "Zinc",
+      "symbol": "ZN",
+      "tracker_mineral": "Zinc",
+      "price_usd": 3480,
+      "price_cad": 4953.43,
+      "unit": "per metric ton",
+      "unit_usd": "per metric ton",
+      "exchange": "LME 3M",
+      "change_pct": 0.24,
+      "price_timestamp": "2026-05-22T10:00:00Z"
+    },
+    "aluminum": {
+      "display_name": "Aluminum",
+      "symbol": "AL",
+      "tracker_mineral": "Other",
+      "price_usd": 3150,
+      "price_cad": 4483.71,
+      "unit": "per metric ton",
+      "unit_usd": "per metric ton",
+      "exchange": "LME 3M",
+      "change_pct": 2.09,
+      "price_timestamp": "2026-05-22T10:00:00Z"
+    }
+  },
+  "unpriced_minerals": [
+    {
+      "display_name": "Lithium",
+      "reason": "No standard spot price \u2014 traded OTC or via specialized exchanges"
+    },
+    {
+      "display_name": "Cobalt",
+      "reason": "No standard spot price \u2014 traded OTC or via specialized exchanges"
+    },
+    {
+      "display_name": "Graphite",
+      "reason": "No standard spot price \u2014 traded OTC or via specialized exchanges"
+    },
+    {
+      "display_name": "Rare Earths",
+      "reason": "No standard spot price \u2014 traded OTC or via specialized exchanges"
+    },
+    {
+      "display_name": "Uranium",
+      "reason": "No standard spot price \u2014 traded OTC or via specialized exchanges"
+    },
+    {
+      "display_name": "Potash",
+      "reason": "No standard spot price \u2014 traded OTC or via specialized exchanges"
+    },
+    {
+      "display_name": "Chromite",
+      "reason": "No standard spot price \u2014 traded OTC or via specialized exchanges"
+    }
+  ]
+}

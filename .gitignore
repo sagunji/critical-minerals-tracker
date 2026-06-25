@@ -10,3 +10,6 @@ dist/
 .vite/
 
 */*/__pycache__/*
+
+# Local planning docs (not tracked in git)
+docs/PHASE1_PLAN.md

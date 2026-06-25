@@ -88,21 +88,16 @@ export default function FilterPanel({
 
   return (
     <div className="p-4 space-y-4">
-      <div className="flex items-center justify-between">
-        <h3 className="font-display text-base font-semibold">Filters</h3>
-        {hasFilters && (
+      {hasFilters && (
+        <div className="flex justify-end">
           <button
             className="text-xs text-accent hover:text-accent-hover font-medium"
             onClick={onReset}
           >
             Reset all
           </button>
-        )}
-      </div>
-
-      <div className="text-xs text-text-muted pb-3 border-b border-border">
-        Showing <strong className="text-text">{projectCount}</strong> of {totalCount} projects
-      </div>
+        </div>
+      )}
 
       <div className="space-y-1.5">
         <label className="text-xs font-medium text-text-muted uppercase tracking-wide">

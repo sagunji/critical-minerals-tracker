@@ -6,9 +6,13 @@ import ShareButton from "./ShareButton";
 interface ProjectDetailProps {
   project: MineralProject;
   onClose: () => void;
+  isInCompare?: boolean;
+  onToggleCompare?: () => void;
+  compareCount?: number;
+  maxCompare?: number;
 }
 
-export default function ProjectDetail({ project, onClose }: ProjectDetailProps) {
+export default function ProjectDetail({ project, onClose, isInCompare, onToggleCompare, compareCount = 0, maxCompare = 4 }: ProjectDetailProps) {
   return (
     <div className="p-5 space-y-4">
       <div className="flex justify-between items-start">
@@ -125,6 +129,22 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
             </div>
           )}
         </div>
+      )}
+
+      {onToggleCompare && (
+        <button
+          onClick={onToggleCompare}
+          disabled={!isInCompare && compareCount >= maxCompare}
+          className={`w-full py-2 text-sm font-medium rounded-md transition-colors ${
+            isInCompare
+              ? "bg-accent text-white hover:bg-accent-hover"
+              : compareCount >= maxCompare
+                ? "bg-bg-muted text-text-muted cursor-not-allowed"
+                : "bg-bg-muted text-text hover:bg-border"
+          }`}
+        >
+          {isInCompare ? "Remove from Compare" : compareCount >= maxCompare ? `Compare full (${maxCompare} max)` : "+ Add to Compare"}
+        </button>
       )}
 
       <ShareButton project={project} />

@@ -37,6 +37,7 @@ def main():
     scripts = [
         "sync_nrcan.py",
         "sync_cmif.py",
+        "sync_prices.py",
     ]
 
     results = {}

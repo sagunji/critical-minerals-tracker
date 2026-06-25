@@ -33,6 +33,16 @@ async def health():
     return {"status": "ok", "version": "0.1.0"}
 
 
+@app.get("/api/prices")
+async def prices():
+    """Return current commodity spot prices for metals relevant to critical minerals."""
+    path = DATA_DIR / "prices.json"
+    if not path.exists():
+        return {"error": "Price data not available. Run sync_prices.py to fetch."}
+    with open(path) as f:
+        return json.load(f)
+
+
 @app.get("/api/sources")
 async def sources():
     """Return metadata about data sources — when last synced, from where, licence info."""

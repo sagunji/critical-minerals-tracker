@@ -9,6 +9,8 @@ interface MineralMapProps {
   projects: MineralProject[];
   selectedProject: MineralProject | null;
   onSelectProject: (project: MineralProject) => void;
+  compareIds: string[];
+  onToggleCompare: (id: string) => void;
 }
 
 function createPinIcon(color: string) {
@@ -37,13 +39,15 @@ function FlyToProject({ project }: { project: MineralProject | null }) {
   return null;
 }
 
-export default function MineralMap({ projects, selectedProject, onSelectProject }: MineralMapProps) {
+export default function MineralMap({ projects, selectedProject, onSelectProject, compareIds, onToggleCompare }: MineralMapProps) {
   const canadaCenter: [number, number] = [56.0, -96.0];
 
   const pinIcon = useMemo(() => {
     if (!selectedProject) return null;
     return createPinIcon(getMineralColor(selectedProject.primaryMineral));
   }, [selectedProject]);
+
+  const compareSet = useMemo(() => new Set(compareIds), [compareIds]);
 
   return (
     <MapContainer
@@ -59,16 +63,17 @@ export default function MineralMap({ projects, selectedProject, onSelectProject 
       <FlyToProject project={selectedProject} />
       {projects.map((project) => {
         const isSelected = selectedProject?.id === project.id;
+        const isComparing = compareSet.has(project.id);
         return (
           <CircleMarker
             key={project.id}
             center={[project.latitude, project.longitude]}
-            radius={isSelected ? 10 : 8}
+            radius={isComparing ? 10 : isSelected ? 10 : 8}
             pathOptions={{
-              color: isSelected ? "#ffffff" : getMineralColor(project.primaryMineral),
+              color: isComparing ? "#b87333" : isSelected ? "#ffffff" : getMineralColor(project.primaryMineral),
               fillColor: getMineralColor(project.primaryMineral),
-              fillOpacity: isSelected ? 1 : 0.8,
-              weight: isSelected ? 2 : 1.5,
+              fillOpacity: isSelected || isComparing ? 1 : 0.8,
+              weight: isComparing ? 3 : isSelected ? 2 : 1.5,
             }}
             eventHandlers={{
               click: () => onSelectProject(project),
@@ -83,6 +88,20 @@ export default function MineralMap({ projects, selectedProject, onSelectProject 
                 <span className="font-medium">{project.primaryMineral}</span>
                 {" · "}
                 <span className="text-text-muted">{project.stage}</span>
+                <br />
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleCompare(project.id);
+                  }}
+                  className={`mt-1 px-2 py-0.5 text-[11px] font-medium rounded transition-colors ${
+                    isComparing
+                      ? "bg-accent text-white"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {isComparing ? "Remove from compare" : "+ Compare"}
+                </button>
               </div>
             </Popup>
           </CircleMarker>
