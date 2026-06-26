@@ -210,8 +210,6 @@ function App() {
             onFundedToggle={() => setShowFundedOnly((v) => !v)}
             onSearchChange={setSearchQuery}
             onReset={handleReset}
-            projectCount={filteredProjects.length}
-            totalCount={projects.length}
           />
         </aside>
 

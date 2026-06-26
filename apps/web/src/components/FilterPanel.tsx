@@ -19,8 +19,6 @@ interface FilterPanelProps {
   onFundedToggle: () => void;
   onSearchChange: (query: string) => void;
   onReset: () => void;
-  projectCount: number;
-  totalCount: number;
 }
 
 const inputClass =
@@ -43,8 +41,6 @@ export default function FilterPanel({
   onFundedToggle,
   onSearchChange,
   onReset,
-  projectCount,
-  totalCount,
 }: FilterPanelProps) {
   const hasFilters =
     selectedMinerals.length > 0 ||
@@ -185,11 +181,10 @@ export default function FilterPanel({
           Quick Filters
         </label>
         <label
-          className={`flex items-center gap-2 text-sm cursor-pointer px-3 py-1.5 rounded-md border transition-colors ${
-            showFundedOnly
-              ? "border-accent bg-bg-muted"
-              : "border-border bg-bg-muted"
-          }`}
+          className={`flex items-center gap-2 text-sm cursor-pointer px-3 py-1.5 rounded-md border transition-colors ${showFundedOnly
+            ? "border-accent bg-bg-muted"
+            : "border-border bg-bg-muted"
+            }`}
         >
           <input
             type="checkbox"
@@ -222,9 +217,8 @@ export default function FilterPanel({
                     onChange={() => onMineralToggle(mineral)}
                   />
                   <span
-                    className={`w-2.5 h-2.5 rounded-full flex-shrink-0 transition-opacity ${
-                      checked ? "opacity-100" : "opacity-50"
-                    }`}
+                    className={`w-2.5 h-2.5 rounded-full flex-shrink-0 transition-opacity ${checked ? "opacity-100" : "opacity-50"
+                      }`}
                     style={{ backgroundColor: color }}
                   />
                   <span>{mineral}</span>
