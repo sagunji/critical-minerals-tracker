@@ -1,0 +1,205 @@
+[
+  {
+    "operator": "Frontier Lithium Inc.",
+    "projectName": "Critical Mineral Concentrate Optimization Process and Recovery",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Vale Canada Limited",
+    "projectName": "Production of battery minerals (Ni and Co) from Vale\u00eds pyrrhotite tailings",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Ring of Fire Metals Pty Ltd.",
+    "projectName": "Eagle\u00eds Nest Underground Tailings Storage",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Canada Nickel Company Inc.",
+    "projectName": "Direct from Mine to EV in Canada \u00f1 Low Carbon Nickel Matte Production",
+    "amount": 327346.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Veracio Canada Ltd.",
+    "projectName": "High-Speed High-Efficiency Exploration Drilling System Development & Commercialization",
+    "amount": 250000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Carbonix Inc.",
+    "projectName": "High Energy Density Graphites",
+    "amount": 475000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "EV Nickel Inc.",
+    "projectName": "Clean-Nickel Bioleaching and Carbon Capture",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Li-Cycle Corp.",
+    "projectName": "Sodium Sulfate Salt Splitting in Hydrometallurgical Lithium-ion Battery Recycling",
+    "amount": 320750.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "SPC Nickel Corp.",
+    "projectName": "SPC Nickel Corp. - West Graham/Crean Hill 3 Sensor Based Ore Sorting Study",
+    "amount": 75770.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Destiny Copper Inc.",
+    "projectName": "Cleantech copper extraction",
+    "amount": 250000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Li-Metal Corp.",
+    "projectName": "Development of Lithium Metal Production Process",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "The Bucket Shop Inc.",
+    "projectName": "Mining Bucket Redesign, Testing and AI-Based Engineering for Light-weighting",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 1
+  },
+  {
+    "operator": "Vale Canada Ltd.",
+    "projectName": "Next Generation Carbonyl Refinery Technology",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Glencore Canada Inc.",
+    "projectName": "Lithium Recovery - R&D for Demonstration Plant",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Albany Graphite Corp.",
+    "projectName": "Albany Graphite Purification and Anode Material Development Project",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Rain Carbon Canada Inc.",
+    "projectName": "Strengthening Ontario\u00eds Battery Supply Value Chain through Advanced Graphite Coating Process",
+    "amount": 492500.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Carbonix Inc.",
+    "projectName": "Engineering analysis and High Energy Density Graphite Performance Benchmarking",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "EV Nickel Inc.",
+    "projectName": "EV Nickel Clean- Critical Minerals Bioleaching - Mineralization Project",
+    "amount": 223552.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Electrovaya Corp.",
+    "projectName": "Scale up Processing for Critical Solid-State Battery Material; Doped Lithium Lanthanum Zirconium Oxide",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Lonmin Canada Inc.",
+    "projectName": "Enhancing Precious Metal Recoveries from Sudbury Footwall and Contact ore bodies",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Fox River Resources Corporation",
+    "projectName": "Martison Phosphate Project conversion of merchant grade phosphoric acid to purified phosphoric acid",
+    "amount": 218500.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Overburden Drilling Management Ltd.",
+    "projectName": "Automated Critical Minerals Identification",
+    "amount": 108000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Avalon Advanced Materials Inc.",
+    "projectName": "Analcime Recovery and Utilization Project",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Rock Tech Lithium Inc.",
+    "projectName": "Rock Tech Spodumene Sorting Testing",
+    "amount": 388074.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Generation PGM Inc.",
+    "projectName": "Advanced Flotation Cells for Copper and PGM Recovery",
+    "amount": 490084.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Wyloo Ring of Fire Ltd.",
+    "projectName": "Nickel Sulfate Processing Facility Assessment",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "Ucore Rare Metals Inc.",
+    "projectName": "RapidSX\u00f4 Demo Plant - Commercial Prototype Demonstration and Continuous Improvement Assessment",
+    "amount": 500000.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "NetZero Metals Inc.",
+    "projectName": "Low Carbon, Low Cost Nickel Processing Capacity in Timmins using Ontario Biochar",
+    "amount": 495740.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  },
+  {
+    "operator": "FNX Mining Company",
+    "projectName": "Waste Rock Main Input for Paste Fill Project",
+    "amount": 407925.0,
+    "program": "Ontario CMIF",
+    "intake": 2
+  }
+]
